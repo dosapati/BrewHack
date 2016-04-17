@@ -1,0 +1,46 @@
+{
+  "intents": [
+    {
+      "intent": "MagazinesFromIntent",
+      "slots": [
+        {
+          "name": "magazine",
+          "type": "LIST_OF_MAGAZINES"
+        }
+      ]
+    },
+    {
+      "intent": "TweetsIntent",
+      "slots": [
+        {
+          "name": "hashtag",
+          "type": "LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "ReadMeMoreIntent",
+      "slots": []
+    },
+    {
+      "intent": "ThankyouIntent",
+      "slots": []
+    },{
+      "intent": "BuyIntent",
+      "slots": [
+        {
+          "name": "buyresponse",
+          "type": "LITERAL"
+        }
+      ]
+    },
+
+    {
+      "intent": "AnyQuestionIntent",
+      "slots": [{
+        "name": "name",
+        "type": "LITERAL"
+      }]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_req
+prompt = no
+
+[req_distinguished_name]
+C = US
+ST = NY
+L = NewYork
+O = S2S
+CN = budagaa
+
+[v3_req]
+keyUsage = keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth
+subjectAltName = @subject_alternate_names
+
+[subject_alternate_names]
+DNS.1 = budagaa.com
+
+curl -v -k https://budagaa.com/hearst --data-binary  '{
+  "version": "1.0",
+  "session": {
+    "new": true,
+    "sessionId": "session1234",
+    "application": {
+      "applicationId": "amzn1.echo-sdk-ams.app.1234"
+    },
+    "attributes": {},
+    "user": {
+      "userId": null
+    }
+  },
+  "request": {
+    "type": "LaunchRequest",
+    "requestId": "request5678",
+    "timestamp": "2015-05-13T12:34:56Z"
+  }
+}'
+
+https://popularmechanics.hearst.io/api/v1/articles?topic_tags:like=virtual%20reality&_key=ydg5q7ezdemk89dmcn6ckj4p
+

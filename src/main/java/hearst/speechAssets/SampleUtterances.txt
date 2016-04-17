@@ -1,0 +1,20 @@
+MagazinesFromIntent read me a {magazine}
+MagazinesFromIntent read {magazine}
+MagazinesFromIntent articles from {magazine}
+MagazinesFromIntent read articles from {magazine}
+
+TweetsIntent find tweets on {ellen|hashtag}
+
+AnyQuestionIntent who is {kim|name}
+
+ReadMeMoreIntent more on first article
+ReadMeMoreIntent tell me more on first article
+ThankyouIntent thank you
+ThankyouIntent stop
+
+BuyIntent {buy|buyresponse} it
+BuyIntent {buy|buyresponse}
+BuyIntent I would like to {buy|buyresponse}
+BuyIntent {yes|buyresponse}
+BuyIntent {no|buyresponse}
+BuyIntent {sorry|buyresponse}

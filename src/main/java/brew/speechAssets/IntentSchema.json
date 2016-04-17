@@ -1,0 +1,57 @@
+{
+  "intents": [
+    {
+      "intent": "BrewIntent",
+      "slots": []
+    },
+    {
+      "intent": "NewsIntent",
+      "slots": []
+    },
+    {
+      "intent": "CompleteIntent",
+      "slots": []
+    },
+    {
+      "intent": "RecommendIntent",
+      "slots": []
+    },
+    {
+      "intent": "RemindIntent",
+      "slots": []
+    },
+    {
+      "intent": "JokeIntent",
+      "slots": []
+    },
+    {
+      "intent": "AnyQuestionIntent",
+      "slots": [{
+        "name": "any",
+        "type": "LIST_OF_ANY"
+      }]
+    },
+    {
+      "intent": "OrderIntent",
+      "slots": [
+        {
+          "name": "beer",
+          "type": "LIST_OF_BEER"
+        }
+      ]
+    },
+    {
+      "intent": "BuyIntent",
+      "slots": [
+        {
+          "name": "buyresponse",
+          "type": "LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "HelpBrewIntent",
+      "slots": []
+    }
+  ]
+}

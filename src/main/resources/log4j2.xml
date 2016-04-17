@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="error">
+  <!-- Don't forget to set system property
+-DLog4jContextSelector=org.apache.logging.log4j.core.async.AsyncLoggerContextSelector
+   to make all loggers asynchronous. -->
+  <Appenders>
+    <Console name="CONSOLE" target="SYSTEM_OUT" >
+      <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+    </Console>
+    <RollingRandomAccessFile name="APPLOG" fileName="logs/alexa.log"
+                             filePattern="logs/alexa-%d{yyyy-MM-dd-HH}.log"
+                             immediateFlush="true"  >
+      <PatternLayout>
+        <Pattern>%d{dd MMM yyyy HH:mm:ss,SSS} %5p %c{1}:%L - %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+      </Policies>
+    </RollingRandomAccessFile>
+    <!--<RollingRandomAccessFile name="salefilter" fileName="data/salefilterstream.log"
+                             filePattern="data/salefilterstream-%d{yyyy-MM-dd-HH-mm}.log"
+                             immediateFlush="false"  >
+        <PatternLayout>
+            <Pattern>%m%n</Pattern>
+        </PatternLayout>
+        <Policies>
+            <TimeBasedTriggeringPolicy />
+        </Policies>
+    </RollingRandomAccessFile>-->
+    <!-- filePattern="logs/salefilterstream-%d{yyyy-MM-dd-HH-mm}.log" -->
+    <!--<Async name="ASYNC">
+        <AppenderRef ref="SAT1"/>
+    </Async>-->
+
+  </Appenders>
+  <Loggers>
+    <!--<logger name="org.springframework" level="info" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>-->
+    <!-- additivity Not to display this one in console log -->
+    <!--  <logger name="TwitterSATFilterStream" level="info" additivity="false">
+          <AppenderRef ref="SAT1"/>
+          &lt;!&ndash; <AppenderRef ref="databaseAppender"/>  &ndash;&gt;
+      </logger>-->
+
+    <Root level="info"  additivity="false">
+<!--
+      <AppenderRef ref="CONSOLE"/>
+-->
+      <AppenderRef ref="APPLOG"/>
+    </Root>
+  </Loggers>
+
+
+</Configuration>

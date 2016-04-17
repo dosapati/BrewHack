@@ -1,0 +1,14 @@
+
+
+
+https://access.alchemyapi.com/calls/data/GetNews?apikey=5255afd06e416044d1f4f7c912f0810ebb7711b7&return=enriched.url.title&start=1460160000&end=1460847600&q.enriched.url.cleanedTitle=beer&q.enriched.url.enrichedTitle.docSentiment.type=positive&q.enriched.url.enrichedTitle.taxonomy.taxonomy_.label=food%20and%20drink&count=25&outputMode=json
+
+https://access.alchemyapi.com/calls/data/GetNews?apikey=5255afd06e416044d1f4f7c912f0810ebb7711b7&return=enriched.url.title,enriched.url.url,enriched.url.author,enriched.url.publicationDate,enriched.url.enrichedTitle.entities,enriched.url.enrichedTitle.docSentiment,enriched.url.enrichedTitle.concepts,enriched.url.enrichedTitle.taxonomy&start=1460160000&end=1460847600&q.enriched.url.cleanedTitle=beer&q.enriched.url.enrichedTitle.docSentiment.type=positive&q.enriched.url.enrichedTitle.taxonomy.taxonomy_.label=food%20and%20drink&count=25&outputMode=json
+
+https://access.alchemyapi.com/calls/data/GetNews?apikey=5255afd06e416044d1f4f7c912f0810ebb7711b7&return=enriched.url.title,enriched.url.url,enriched.url.author,enriched.url.publicationDate&start=1460160000&end=1460847600&q.enriched.url.text=Beer&q.enriched.url.docSentiment.type=positive&count=25&outputMode=json
+
+//final
+https://access.alchemyapi.com/calls/data/GetNews?apikey=5255afd06e416044d1f4f7c912f0810ebb7711b7&return=enriched.url.title,enriched.url.url,enriched.url.author,enriched.url.publicationDate&start=1460160000&end=1460847600&q.enriched.url.cleanedTitle=Beer&q.enriched.url.enrichedTitle.docSentiment.type=positive&count=25&outputMode=json
+
+
+mvn exec:java -Dexec.executable="java" -DdisableRequestSignatureCheck=true > out.log 2>&1 &

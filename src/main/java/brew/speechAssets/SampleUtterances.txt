@@ -1,0 +1,80 @@
+BrewIntent say brew bot
+BrewIntent say brew bot world
+BrewIntent brew
+BrewIntent say brew bot
+BrewIntent say brew world
+BrewIntent brew
+BrewIntent how are you
+
+OrderIntent order {beer} beer
+OrderIntent I would like to order {beer} beer
+OrderIntent Lets order {beer} beer
+OrderIntent Let's order {beer} beer
+OrderIntent Can we order {beer} beer
+
+
+NewsIntent Read me news
+NewsIntent wht's up
+NewsIntent news
+NewsIntent wht's new
+NewsIntent give me update
+NewsIntent latest
+
+AnyQuestionIntent tell me again {any}
+AnyQuestionIntent repeat {any}
+AnyQuestionIntent show me my shoppingcart {any}
+AnyQuestionIntent {any}
+
+BuyIntent {buy|buyresponse} it
+BuyIntent lets {buy|buyresponse} it
+BuyIntent let's {buy|buyresponse} it
+BuyIntent {buy|buyresponse}
+BuyIntent I would like to {buy|buyresponse}
+BuyIntent {yes|buyresponse}
+BuyIntent {no|buyresponse}
+BuyIntent {don't|buyresponse} buy
+BuyIntent {sorry|buyresponse}
+
+RemindIntent remind me
+RemindIntent remind
+
+RecommendIntent recommend me
+RecommendIntent suggest me
+RecommendIntent food for beer
+RecommendIntent which food
+RecommendIntent snacks
+RecommendIntent any food
+RecommendIntent food
+
+CompleteIntent complete my order
+CompleteIntent finish up
+CompleteIntent check out
+CompleteIntent check please
+
+JokeIntent tell me a joke
+JokeIntent wht's new joke
+JokeIntent joke please
+JokeIntent any new joke
+JokeIntent jokes
+JokeIntent tell me a good joke
+JokeIntent tell me a bad joke
+JokeIntent any joke please
+
+
+HelpBrewIntent help
+HelpBrewIntent help me
+HelpBrewIntent what can I ask you
+HelpBrewIntent get help
+HelpBrewIntent to help
+HelpBrewIntent to help me
+HelpBrewIntent what commands can I ask
+HelpBrewIntent what commands can I say
+HelpBrewIntent what can I do
+HelpBrewIntent what can I use this for
+HelpBrewIntent what questions can I ask
+HelpBrewIntent what can you do
+HelpBrewIntent what do you do
+HelpBrewIntent how do I use you
+HelpBrewIntent how can I use you
+HelpBrewIntent what can you tell me
+

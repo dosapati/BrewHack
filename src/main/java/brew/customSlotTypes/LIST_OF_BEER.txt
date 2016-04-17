@@ -1,0 +1,10 @@
+Other Ale
+Lager
+Pale Ale
+Wheat
+Light
+Cider
+Stout
+Amber Ale
+Ale
+Other
