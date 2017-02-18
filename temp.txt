@@ -9,14 +9,894 @@ derivation [CHARGE_OFF_EVENT_TXN_TYPE] --> If IsNotNull(Tfm_Standardize.CHRG_OFF
 derivation [CHARGE_OFF_EVENT_REASON_CODE] --> If IsNull(Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE) Then '' Else  Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE
 derivation [CHARGE_OFF_EVENT_INT_AND_FEE] --> '0.0'
 derivation [COUNTRY_CD] --> PLN_Parameter_Set.ISO_CNTRY_CD
-derivation [REPORTING_PERIOD] --> Tfm_Standardize.REPORTING_PERIOD [1,6]
-derivation [ACCOUNT_NUMBER] --> Tfm_Standardize.ACCOUNT_NUMBER
-derivation [CHARGE_OFF_EVENT_DATE] --> If IsNull(Tfm_Standardize.CHRG_OFF_DT) then '' else UpCase(DateToString(Tfm_Standardize.CHRG_OFF_DT,'%dd%mmm%yyyy'))
-derivation [CHARGE_OFF_EVENT_TYPE] --> If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then '1' Else ''
-derivation [CHARGE_OFF_EVENT_PRINCIPAL] --> '0.0'
-derivation [CHARGE_OFF_EVENT_INTEREST] --> '0.0'
-derivation [CHARGE_OFF_EVENT_FEE] --> '0.0'
-derivation [CHARGE_OFF_EVENT_TXN_TYPE] --> If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then '2' Else ''
-derivation [CHARGE_OFF_EVENT_REASON_CODE] --> If IsNull(Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE) Then '' Else  Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE
-derivation [CHARGE_OFF_EVENT_INT_AND_FEE] --> '0.0'
-derivation [COUNTRY_CD] --> PLN_Parameter_Set.ISO_CNTRY_CD
+
+
+Type - 2
+
+derivation [REPORTING_PERIOD] --> V_MISDATE[1,6]
+derivation [FACILITY_UNIQUE_IDENTIFIER] --> Lnk_Nxg_Data.FACILITY_UNIQUE_IDENTIFIER
+derivation [CCL_AMOUNT] --> If IsNull(Lnk_Nxg_Data.CCL_AMOUNT) then '' else If Index(DecimalToString(Lnk_Nxg_Data.CCL_AMOUNT,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Nxg_Data.CCL_AMOUNT,"suppress_zero") : '.0' ELSE DecimalToString(Lnk_Nxg_Data.CCL_AMOUNT,"suppress_zero")
+derivation [LIEN_INDICATOR] --> '4'
+derivation [REVOLVING_FLAG] --> 'Y'
+derivation [ORIGINAL_LOAN_TO_VALUE] --> ''
+derivation [RISK_MITIGANT_SUB_TYPE_1] --> ''
+derivation [RISK_MITIGANT_SUB_TYPE_2] --> ''
+derivation [RISK_MITIGANT_SUB_TYPE_3] --> ''
+derivation [RISK_MITIGANT_SUB_TYPE_4] --> ''
+derivation [END_OF_PERIOD_COMM_UNDRW_LINE] --> ''
+derivation [CURRENT_ADVISED_COMMITTED_LINE] --> ''
+derivation [LOAN_AMOUNT] --> ''
+derivation [CREDIT_LINE_UTILIZATION] --> If IsNull(Lnk_Nxg_Data.ORA084) then '' else If Index(DecimalToString(Lnk_Nxg_Data.ORA084,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Nxg_Data.ORA084,"suppress_zero") : '.0' ELSE DecimalToString(Lnk_Nxg_Data.ORA084,"suppress_zero")
+derivation [CURR_UNDRW_ADV_UNCT_LMT_MOED] --> If IsNull(Lnk_Nxg_Data.ORA094) then '' else If Index(DecimalToString(Lnk_Nxg_Data.ORA094,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Nxg_Data.ORA094,"suppress_zero") : '.0' ELSE DecimalToString(Lnk_Nxg_Data.ORA094,"suppress_zero")
+derivation [CURR_UNDRW_UNADV_UNCT_LMT_MOED] --> '0.0'
+derivation [ORIGINAL_COMBINED_LTV] --> ''
+derivation [CURRENT_COMBINED_LOAN_TO_VALUE] --> ''
+derivation [CURRENT_LOAN_TO_VALUE] --> ''
+derivation [ORIGAL_TOT_ADV_COMM_LMT_MOED] --> ''
+derivation [ORIG_TOT_ADV_UNCT_LMT_MOED] --> If IsNull(Lnk_Nxg_Data.ORA631) then '' else If Index(DecimalToString(Lnk_Nxg_Data.ORA631,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Nxg_Data.ORA631,"suppress_zero") : '.0' ELSE DecimalToString(Lnk_Nxg_Data.ORA631,"suppress_zero")
+derivation [ORIG_TOT_UNADV_UNCT_LMT_MOED] --> ''
+derivation [CURR_TOT_ADV_UNCT_LMT_MOED] --> If IsNull(Lnk_Nxg_Data.ORA633) then '' else If Index(DecimalToString(Lnk_Nxg_Data.ORA633,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Nxg_Data.ORA633,"suppress_zero") : '.0' ELSE DecimalToString(Lnk_Nxg_Data.ORA633,"suppress_zero")
+derivation [CURR_TOT_UNADV_UNCT_LMT_MOED] --> ''
+derivation [GUARANTEE_AMOUNT] --> ''
+derivation [GUARANTEE_RELATIONSHIP_CODE] --> ''
+derivation [NATURAL_CURRENCY] --> ''
+derivation [REPORTING_PERIOD] --> V_MISDATE[1,6]
+derivation [FACILITY_UNIQUE_IDENTIFIER] --> Lnk_Nxg_Data.FACILITY_UNIQUE_IDENTIFIER
+derivation [LINKAGE_TYPE] --> '2'
+derivation [LINKED_UNIQUE_ID] --> Lnk_Nxg_Data.CRD_ACCT_NBR
+derivation [COLL_PERCENTAGE_ALLOCATION] --> ''
+
+
+
+-- type3
+
+[main] 19:43:36,215 INFO  com.citi.gcg.ds.parser.DSParser.main(DSParser.java:53) - !!!! DSParser Started.......................
+[main] 19:43:37,705 INFO  com.citi.gcg.ds.parser.DSParser.main(DSParser.java:70) - Total No of Jobs -----> 1
+[main] 19:43:38,652 INFO  com.citi.gcg.ds.parser.DSParser.main(DSParser.java:83) - Job [#0] - ID_GNS_MTG_O2_ACCOUNT_FILE_TFM
+[main] 19:43:44,565 INFO  com.citi.gcg.ds.parser.DSParser.main(DSParser.java:91) - Job [ID_GNS_MTG_O2_ACCOUNT_FILE_TFM] is of type Type-3
+txStage --->V358S3:CTransformerStage
+[main] 19:43:45,007 INFO  com.citi.gcg.ds.parser.DSParser.buildTransformationStage(DSParser.java:191) - txStageOutputPin --->V358S3P2|V358S3P4|V358S3P7
+derivation [REPORTING_PERIOD] --> Lnk_Lkp_To_Jn.REPORTING_PERIOD
+derivation [ACCOUNT_NUMBER] --> Lnk_Lkp_To_Jn.ACCOUNT_NUMBER
+derivation [ARRGMNT_BUSINESS_INTENT_TYPE] --> '2'
+derivation [ACCOUNT_OPEN_DATE] --> If IsNull(Lnk_Lkp_To_Jn.ACCOUNT_OPEN_DATE) Then '' Else  Lnk_Lkp_To_Jn.ACCOUNT_OPEN_DATE
+derivation [SOLD_DATE] --> ''
+derivation [SOLD_STATUS] --> ''
+derivation [SKIP_PAYMENT_DATE] --> ''
+derivation [SKIP_PAYMENT_ELIGIBLE] --> ''
+derivation [SKIP_PAYMENT_COUNT_LTD] --> ''
+derivation [NEGATIVE_AMORTIZATION_DATE] --> ''
+derivation [CREDIT_TEST_ACCOUNT_FLAG] --> ''
+derivation [BOOK_OF_BUSINESS] --> If IsNull(Lnk_Lkp_To_Jn.BOOK_OF_BUSINESS) Then '' Else  Lnk_Lkp_To_Jn.BOOK_OF_BUSINESS
+derivation [ORIGINATING_BRANCH] --> If IsNull(Lnk_Lkp_To_Jn.ORIGINATING_BRANCH) Then '' Else  Lnk_Lkp_To_Jn.ORIGINATING_BRANCH
+derivation [DATE_OF_LAST_INTEREST_REVERSAL] --> If IsNull(Lnk_Lkp_To_Jn.DATE_OF_LAST_INTEREST_REVERSAL) Then '' Else  Lnk_Lkp_To_Jn.DATE_OF_LAST_INTEREST_REVERSAL
+derivation [LOCAL_BLOCK_CODE_2] --> ''
+derivation [PAYMENT_RETURNED_FLAG] --> ''
+derivation [LIEN_INDICATOR] --> '1'
+derivation [NUMBER_OF_BORROWERS] --> '1'
+derivation [SENIOR_LIEN_PRODUCT_AT_ORIGIN] --> ''
+derivation [SILENT_SECOND_FLAG] --> ''
+derivation [LAST_PREPMT_EARLY_PAYOUT_RSN] --> ''
+derivation [ORIGINAL_AMORTIZATION_PERIOD] --> If IsNull(Lnk_Lkp_To_Jn.ORIGINAL_AMORTIZATION_PERIOD) Then '' Else  Lnk_Lkp_To_Jn.ORIGINAL_AMORTIZATION_PERIOD
+derivation [REPAYMENT_TYPE_AT_ORIGIN] --> '2'
+derivation [REPAYMENT_TERM] --> If IsNull(Lnk_Lkp_To_Jn.REPAYMENT_TERM) Then '' Else  Lnk_Lkp_To_Jn.REPAYMENT_TERM
+derivation [LOCAL_PROGRAM_DESCRIPTION] --> 'Staff Benefit'
+derivation [LAST_FULL_PAYMENT_DATE] --> If IsNull(Lnk_Lkp_To_Jn.LAST_FULL_PAYMENT_DATE) Then '' Else  Lnk_Lkp_To_Jn.LAST_FULL_PAYMENT_DATE
+derivation [LAST_PAYMENT_DUE_DATE] --> If IsNull(Lnk_Lkp_To_Jn.LAST_PAYMENT_DUE_DATE) Then '' Else  Lnk_Lkp_To_Jn.LAST_PAYMENT_DUE_DATE
+derivation [LOAN_PARTICIPATION_RATE] --> '0.00'
+derivation [CITI_EMPLOYEE_LOAN_ORIGIN_TYPE] --> '1'
+derivation [BLD_UNDER_CONSTRUCTION_TYPE] --> '3'
+derivation [CPF_LIEN_POSITION] --> ''
+derivation [LAST_PAYMENT_DATE] --> If IsNull(Lnk_Lkp_To_Jn.LAST_PAYMENT_DATE) Then '' Else  Lnk_Lkp_To_Jn.LAST_PAYMENT_DATE
+derivation [FIRST_NON_ACCRUAL_DATE] --> ''
+derivation [SECURITIZED_FLAG] --> 'N'
+derivation [FIRST_PAYMENT_DATE] --> If IsNull(Lnk_Lkp_To_Jn.FIRST_PAYMENT_DATE) Then '' Else  Lnk_Lkp_To_Jn.FIRST_PAYMENT_DATE
+derivation [BALLOON_TERM] --> ''
+derivation [BUYDOWN_FLAG] --> ''
+derivation [ARM_LIFETIME_RATE_CAP] --> '0.00'
+derivation [NEGATIVE_AMORTIZATION_FLAG] --> 'N'
+derivation [PRE_PAYMENT_PENALTY_FLAG] --> ''
+derivation [PRE_PAYMENT_PENALTY_TERM] --> ''
+derivation [MORTGAGE_INVESTOR_TYPE] --> '7'
+derivation [SERVICER_ADVANCES] --> ''
+derivation [NEXT_PAYMENT_DUE_DATE] --> If IsNull(Lnk_Lkp_To_Jn.NEXT_PAYMENT_DUE_DATE) Then '' Else  Lnk_Lkp_To_Jn.NEXT_PAYMENT_DUE_DATE
+derivation [REMAINING_TERM] --> If IsNull(Lnk_Lkp_To_Jn.REMAINING_TERM) Then '' Else  Lnk_Lkp_To_Jn.REMAINING_TERM
+derivation [PAID_IN_FULL_CODING] --> If IsNull(Lnk_Lkp_To_Jn.PAID_IN_FULL_CODING) Then '' Else  Lnk_Lkp_To_Jn.PAID_IN_FULL_CODING
+derivation [REPURCHASE_REQ_PUT_BACK_DATE] --> ''
+derivation [LOAN_REPURCHASE_PUT_BACK_TYPE] --> ''
+derivation [REFRESHED_DBT_INC_RATIO_BCKEND] --> '0.00'
+derivation [REFRESHED_DBT_INC_RATIO_FRNEND] --> '0.00'
+derivation [HOME_AFFORDABLE_REFINANCE_FLAG] --> ''
+derivation [HAMP_LOAN_NUMBER] --> ''
+derivation [STEP_MODIFICATION_FLAG] --> ''
+derivation [REPORTED_AS_BANK_OWNED_FLAG] --> ''
+derivation [ACCOUNTING_BASIS] --> '6'
+derivation [HOME_EQUITY_LIQUIDATION_STATUS] --> ''
+derivation [FIRST_MORT_SERVICED_IN_HOUSE] --> ''
+derivation [CREDIT_LINE_FROZEN_FLAG] --> ''
+derivation [LOCKOUT_FEATURE_FLAG] --> 'N'
+derivation [LOAN_DRAW_END_DATE] --> ''
+derivation [LOAN_MODN_INT_REDUCTION] --> ''
+derivation [LOAN_EXTENSION_FLAG] --> ''
+derivation [ACQUISITION_DATE] --> '02JAN1900'
+derivation [JOINT_ACCOUNT] --> 'N'
+derivation [LINE_FROZEN_CURR_MONTH_FLAG] --> ''
+derivation [INTEREST_RATE_FLAG_MONTH_END] --> '1'
+derivation [ACCOUNT_STATUS_CLOSED_MOED] --> Lnk_Lkp_To_Jn.ACCOUNT_STATUS_CLOSED_MOED
+derivation [LOAN_FUNDING_CLOSE_DATE] --> If IsNull(Lnk_Lkp_To_Jn.LOAN_FUNDING_CLOSE_DATE) Then '' Else  Lnk_Lkp_To_Jn.LOAN_FUNDING_CLOSE_DATE
+derivation [LAST_MODIFIED_DATE] --> ''
+derivation [ACCOUNT_STATUS] --> If IsNull(Lnk_Lkp_To_Jn.ACCOUNT_STATUS) Then '' Else  Lnk_Lkp_To_Jn.ACCOUNT_STATUS
+derivation [ACCOUNT_CYCLE_DATE] --> \(20)''
+derivation [SCORE_EXCEPTION_FLAG] --> ''
+derivation [NATURAL_CURRENCY] --> 'IDR'
+derivation [CLOSED_DATE] --> If IsNull(Lnk_Lkp_To_Jn.CLOSED_DATE) Then '' Else  Lnk_Lkp_To_Jn.CLOSED_DATE
+derivation [ORIGINAL_LOAN_MATURITY_DATE] --> If IsNull(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_MATURITY_DATE) Then '' Else  Lnk_Lkp_To_Jn.ORIGINAL_LOAN_MATURITY_DATE
+derivation [REVOLVING_FLAG] --> 'NON_RV_LMT'
+derivation [ORIGINAL_LOAN_TO_VALUE] --> If IsNull(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TO_VALUE) Then '' 
+Else If Index(DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TO_VALUE,"suppress_zero"), '.',1)=0 
+THEN 
+DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TO_VALUE,"suppress_zero") : '.00'
+ ELSE DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TO_VALUE,"suppress_zero")
+derivation [MONTHS_ON_BOOK_LOCAL] --> If IsNull(Lnk_Lkp_To_Jn.MONTHS_ON_BOOK_LOCAL) Then '' Else  Lnk_Lkp_To_Jn.MONTHS_ON_BOOK_LOCAL
+derivation [ORIGIN_CHANNEL] --> '1'
+derivation [LOAN_TYPE] --> "4"
+derivation [MORTGAGE_TYPE] --> '3'
+derivation [MORTGAGE_TYPE_2] --> Lnk_Lkp_To_Jn.MORTGAGE_TYPE_2
+derivation [BOOKED_USING_STANDARD_SCORE] --> ''
+derivation [ORIGINAL_LOAN_TERM] --> If IsNull(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TERM) Then '' Else  Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TERM
+derivation [TOP_UP_FLAG] --> If IsNull(Lnk_Lkp_To_Jn.TOP_UP_FLAG) Then '' Else  Lnk_Lkp_To_Jn.TOP_UP_FLAG
+derivation [LOCAL_BLOCK_CODE] --> ''
+derivation [CURRENCY_CODE] --> 'IDR'
+derivation [ACCOUNT_SOURCE] --> 'ALS'
+derivation [SKIP_A_PAYMENT] --> If IsNull(Lnk_Lkp_To_Jn.SKIP_A_PAYMENT) Then '' Else  Lnk_Lkp_To_Jn.SKIP_A_PAYMENT
+derivation [HOUSEHOLD_ID] --> ''
+derivation [PRODUCT_CCAR_TYPE] --> Lnk_Lkp_To_Jn.PRODUCT_CCAR_TYPE
+derivation [RISK_MITIGANT_TYPE] --> '1'
+derivation [RISK_MITIGANT_SUB_TYPE_1] --> ''
+derivation [RISK_MITIGANT_SUB_TYPE_2] --> ''
+derivation [RISK_MITIGANT_SUB_TYPE_3] --> 'A'
+derivation [RISK_MITIGANT_SUB_TYPE_4] --> ''
+derivation [LIMIT_EVENT_CODE] --> ''
+derivation [LIMIT_EVENT_AMOUNT] --> '0.00'
+derivation [ACTUAL_PAYOFF_DATE] --> If IsNull(Lnk_Lkp_To_Jn.ACTUAL_PAYOFF_DATE) Then '' Else  Lnk_Lkp_To_Jn.ACTUAL_PAYOFF_DATE
+derivation [LIMIT_EVENT_DATE] --> ''
+derivation [LIMIT_EVENT_INITIATED_CODE] --> ''
+derivation [REPAYMENT_TYPE] --> ''
+derivation [REPAYMENT_INT_ONLY_EXP_DT] --> ''
+derivation [BALLOON_PAYMENT_EXISTS] --> ''
+derivation [CURR_NEGATIVE_AMORTIZING_FLAG] --> 'N'
+derivation [NON_TRADITIONAL_MORTGAGE] --> 'Y'
+derivation [PRINCIPAL_DEFERRAL_OPTION] --> 'N'
+derivation [PRIN_DEF_OPTION_EXP_DT] --> ''
+derivation [INTEREST_DEFERRAL_OPTION] --> ''
+derivation [INT_DEFERRAL_OPTION_EXP_DT] --> ''
+derivation [PRODUCT_FDIC_TYPE] --> '1'
+derivation [LINE_REAGE] --> ''
+derivation [LOAN_OR_LINE_OWNER] --> '2'
+derivation [ACCRUAL_STATUS] --> If IsNull(Lnk_Lkp_To_Jn.ACCRUAL_STATUS) Then '' Else  Lnk_Lkp_To_Jn.ACCRUAL_STATUS
+derivation [REASON_FOR_DEFAULT] --> ''
+derivation [THIRD_PARTY_SALE_FLAG] --> ''
+derivation [PERFORMANCE_OF_FIRST_LIEN] --> ''
+derivation [COMMERCIAL_LOAN_FLAG] --> ''
+derivation [REMODIFIED_FLAG] --> ''
+derivation [PERFORMANCE_OF_JUNIOR_LIENS] --> '0'
+derivation [INTEREST_ONLY_TERM_ORIGINAL] --> '0.00'
+derivation [MORTGAGE_TYPE_AT_ORIGIN] --> Lnk_Lkp_To_Jn.MORTGAGE_TYPE_AT_ORIGIN
+derivation [LAST_FUNDS_ADVANCED_DATE] --> If IsNull(Lnk_Lkp_To_Jn.LAST_FUNDS_ADVANCED_DATE) Then '' Else  Lnk_Lkp_To_Jn.LAST_FUNDS_ADVANCED_DATE
+derivation [FUNDS_ADVANCED_COMPLETE_FLAG] --> 'Y'
+derivation [HELD_FOR_SALE_BALANCE] --> '0.00'
+derivation [ARRANGEMENT_PURPOSE_CODE] --> '26'
+derivation [CURR_LOAN_LEASE_MATURITY_DATE] --> If IsNull(Lnk_Lkp_To_Jn.CURR_LOAN_LEASE_MATURITY_DATE) Then '' Else  Lnk_Lkp_To_Jn.CURR_LOAN_LEASE_MATURITY_DATE
+derivation [LAST_BASEL_DEFAULT_START_DATE] --> ''
+derivation [CUT_OFF_SCORE] --> ''
+derivation [LAST_BASEL_DEFAULT_END_DATE] --> ''
+derivation [TOP_UP_CUT_OFF_SCORE] --> ''
+derivation [REPURCH_PUT_BACK_COMPLETION_DT] --> ''
+derivation [RISK_MANAGEMENT_TYPE] --> '1'
+derivation [ACCT_SUSPENSION_TEMP_BLOCK_RSN] --> If IsNull(Lnk_Lkp_To_Jn.ACCT_SUSPENSION_TEMP_BLOCK_RSN) Then '' Else  Lnk_Lkp_To_Jn.ACCT_SUSPENSION_TEMP_BLOCK_RSN
+derivation [LAST_ACTIVITY_DATE] --> ''
+derivation [ACCT_SUSPENSION_TEMP_BLOCK_DT] --> If IsNull(Lnk_Lkp_To_Jn.ACCT_SUSPENSION_TEMP_BLOCK_DT) Then '' Else  Lnk_Lkp_To_Jn.ACCT_SUSPENSION_TEMP_BLOCK_DT
+derivation [APPLICATION_ID] --> ''
+derivation [CREDIT_EXPIRATION_DATE] --> ''
+derivation [HOUSEHOLD_TOTAL_INCOME] --> '0.00'
+derivation [LAST_RENEWAL_DATE] --> ''
+derivation [LAST_NON_ACCRUAL_EFFECTIVE_DT] --> ''
+derivation [LOAN_TERM_END_DATE] --> If IsNull(Lnk_Lkp_To_Jn.LOAN_TERM_END_DATE) Then '' Else  Lnk_Lkp_To_Jn.LOAN_TERM_END_DATE
+derivation [END_OF_PERIOD_COMM_UNDRW_LINE] --> '0.00'
+derivation [ASSET_VALUE_ACCT_ENTERED_OREO] --> '0.00'
+derivation [CURRENT_ADVISED_COMMITTED_LINE] --> '0.00'
+derivation [LOAN_AMOUNT] --> Lnk_Lkp_To_Jn.LOAN_AMOUNT
+derivation [LOAN_ADVANCES] --> IF IsNull(Lnk_Lkp_To_Jn.LOAN_ADVANCES) 
+Then '' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.LOAN_ADVANCES,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.LOAN_ADVANCES,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.LOAN_ADVANCES,"suppress_zero")
+derivation [CREDIT_LINE_UTILIZATION] --> '0.00'
+derivation [CURR_UNDRW_ADV_UNCT_LMT_MOED] --> '0.00'
+derivation [CURR_UNDRW_UNADV_UNCT_LMT_MOED] --> '0.00'
+derivation [LAST_CREDIT_USAGE_DATE] --> ''
+derivation [SENIOR_LIEN_UPB_AT_ORIGIN] --> ''
+derivation [ASSET_VALUE_AT_ORIGIN] --> '0.00'
+derivation [CPF_LOAN_AMOUNT] --> ''
+derivation [LOAN_TO_VALUE_AT_DEFAULT] --> ''
+derivation [PAYMENT_MISSED_COUNT] --> If IsNull(Lnk_Lkp_To_Jn.PAYMENT_MISSED_COUNT) Then '' Else  Lnk_Lkp_To_Jn.PAYMENT_MISSED_COUNT
+derivation [PAYMENT_AMOUNT_MONTH_END] --> If IsNull(Lnk_Lkp_To_Jn.PAYMENT_AMOUNT_MONTH_END) Then '' Else  Lnk_Lkp_To_Jn.PAYMENT_AMOUNT_MONTH_END
+derivation [PRINCIPAL_DEFERRAL_AMOUNT] --> ''
+derivation [PRINCIPAL_PAID] --> If IsNull(Lnk_Lkp_To_Jn.PRINCIPAL_PAID) Then '' Else  Lnk_Lkp_To_Jn.PRINCIPAL_PAID
+derivation [PRINCIPAL_WAIVED] --> '0.00'
+derivation [ORIGINAL_PRINCIPAL_AMOUNT] --> If IsNull(Lnk_Lkp_To_Jn.ORIGINAL_PRINCIPAL_AMOUNT) Then '' Else  Lnk_Lkp_To_Jn.ORIGINAL_PRINCIPAL_AMOUNT
+derivation [ORIGINAL_COMBINED_LTV] --> If IsNull(Lnk_Lkp_To_Jn.ORIGINAL_COMBINED_LTV) Then '' 
+Else If Index(DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_COMBINED_LTV,"suppress_zero"), '.',1)=0 
+THEN 
+DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_COMBINED_LTV,"suppress_zero") : '.00'
+ ELSE DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_COMBINED_LTV,"suppress_zero")
+derivation [PRIN_AND_INT_AMT_AT_ORIGIN] --> IF IsNull(Lnk_Lkp_To_Jn.PRIN_AND_INT_AMT_AT_ORIGIN) 
+Then '0.00' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.PRIN_AND_INT_AMT_AT_ORIGIN,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.PRIN_AND_INT_AMT_AT_ORIGIN,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.PRIN_AND_INT_AMT_AT_ORIGIN,"suppress_zero")
+derivation [SCHEDULED_PRIN_BALANCE_AMT] --> ''
+derivation [REFRESHED_COMBLTV_AFTER_MODN] --> '0.00'
+derivation [LOCKED_AMT_AMORT_LOC] --> ''
+derivation [LOCKED_AMT_INT_ONLY_LOC] --> ''
+derivation [GROSS_OUTSTNG_TOT_BAL_MOED] --> ''
+derivation [MINIMUM_PAYMENT_DUE] --> If IsNull(Lnk_Lkp_To_Jn.MINIMUM_PAYMENT_DUE) Then '' Else  Lnk_Lkp_To_Jn.MINIMUM_PAYMENT_DUE
+derivation [CREDIT_ENHANCED_AMOUNT] --> '0.00'
+derivation [CURRENT_COMBINED_LOAN_TO_VALUE] --> ''
+derivation [CURRENT_LOAN_TO_VALUE] --> ''
+derivation [PAYMENT_AMOUNT_CYCLE_END] --> ''
+derivation [OUTSTANDING_BALANCE_CYCLE_END] --> ''
+derivation [JUNIOR_LIENS_AT_ORIGIN] --> ''
+derivation [GROSS_OUTSTNG_PRIN_BAL_MOED] --> IF IsNull(Lnk_Lkp_To_Jn.GROSS_OUTSTNG_PRIN_BAL_MOED) 
+Then '' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.GROSS_OUTSTNG_PRIN_BAL_MOED,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.GROSS_OUTSTNG_PRIN_BAL_MOED,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.GROSS_OUTSTNG_PRIN_BAL_MOED,"suppress_zero")
+derivation [ORIGAL_TOT_ADV_COMM_LMT_MOED] --> '0.00'
+derivation [ORIG_TOT_ADV_UNCT_LMT_MOED] --> '0.00'
+derivation [ORIG_TOT_UNADV_UNCT_LMT_MOED] --> '0.00'
+derivation [CURR_TOT_ADV_UNCT_LMT_MOED] --> '0.00'
+derivation [CURR_TOT_UNADV_UNCT_LMT_MOED] --> '0.00'
+derivation [ENDING_NET_RECEIVABLES_LOCAL] --> '0.00'
+derivation [BALLOON_PAYMENT_AMOUNT] --> '0.00'
+derivation [PRINCIPAL_REVERSALS] --> ''
+derivation [TOTAL_FUNDS_DISBURSED] --> If IsNull(Lnk_Lkp_To_Jn.TOTAL_FUNDS_DISBURSED) Then '' Else  Lnk_Lkp_To_Jn.TOTAL_FUNDS_DISBURSED
+derivation [TOTAL_CREDIT_LINE] --> ''
+derivation [UNFUNDED_COMMITMENT_AMOUNT] --> '0.00'
+derivation [CREDIT_RISK_CAPITAL] --> ''
+derivation [SPECIFIC_RESERVES] --> ''
+derivation [PRE_PAYMENT_AMOUNT] --> '0.00'
+derivation [REAL_ESTATE_OWNED_GAIN_OR_LOSS] --> '0.00'
+derivation [OUTSTANDING_FEES] --> IF IsNull(Lnk_Lkp_To_Jn.OUTSTANDING_FEES) 
+Then '' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.OUTSTANDING_FEES,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.OUTSTANDING_FEES,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.OUTSTANDING_FEES,"suppress_zero")
+derivation [NET_OUTSTNG_PRIN_BAL_MOED] --> Lnk_Lkp_To_Jn.NET_OUTSTNG_PRIN_BAL_MOED
+derivation [REO_SALE_PROCEEDS] --> '0.00'
+derivation [FEE_INCOME] --> '0.00'
+derivation [FEE_REVERSAL_AMOUNT] --> '0.00'
+derivation [INTEREST_AND_FEE_INCOME] --> ''
+derivation [ACCRUED_INTEREST_AND_FEE] --> IF IsNull(Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AND_FEE) 
+Then '' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AND_FEE,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AND_FEE,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AND_FEE,"suppress_zero")
+derivation [OUTSTANDING_INTEREST_AND_FEE] --> IF IsNull(Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST_AND_FEE) 
+Then '' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST_AND_FEE,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST_AND_FEE,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST_AND_FEE,"suppress_zero")
+derivation [BILLED_FEE] --> ''
+derivation [BILLED_INTEREST] --> ''
+derivation [POST_CHARGE_OFF_BALANCEF] --> ''
+derivation [PRE_CHARGE_OFF_SALE_PROCEEDS] --> '0.00'
+derivation [PRE_CHARGE_OFF_BOOK_VALUE] --> '0.00'
+derivation [INTEREST_INCOME] --> '0.00'
+derivation [CURR_PRINCIPAL_AND_INT_AMOUNT] --> IF IsNull(Lnk_Lkp_To_Jn.CURR_PRINCIPAL_AND_INT_AMOUNT) 
+Then '0.00' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.CURR_PRINCIPAL_AND_INT_AMOUNT,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.CURR_PRINCIPAL_AND_INT_AMOUNT,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.CURR_PRINCIPAL_AND_INT_AMOUNT,"suppress_zero")
+derivation [TOT_DEBT_AT_INVOLUNTARY_TERMN] --> '0.00'
+derivation [ESCROW_AMOUNT_CURRENT] --> '0.00'
+derivation [FEE_REVERSAL_DATE_MONTH_END] --> ''
+derivation [FEE_PAYMENTS] --> Lnk_Lkp_To_Jn.FEE_PAYMENTS
+derivation [INTEREST_PAYMENTS] --> Lnk_Lkp_To_Jn.INTEREST_PAYMENTS
+derivation [OUTSTANDING_INTEREST] --> Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST
+derivation [INTEREST_REVERSAL] --> '0.00'
+derivation [LTD_INT_REV_IMPACTING_ALLL] --> ''
+derivation [LTD_INT_REV_NOT_IMPACTING_ALLL] --> '0.00'
+derivation [LTD_FEE_REV_IMPACTING_ALLL] --> '0.00'
+derivation [LTD_FEE_REV_NOT_IMPACTING_ALLL] --> '0.00'
+derivation [PRINCIPAL_AND_INT_BEFORE_MODN] --> '0.00'
+derivation [PRINCIPAL_AND_INT_AFTER_MODN] --> '0.00'
+derivation [ESCROW_AMOUNT_AT_ORIGIN] --> '0.00'
+derivation [OTHER_REAL_ESTATE_OWNED_BAL] --> '0.00'
+derivation [ACCRUED_INTEREST_AMOUNT] --> Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AMOUNT
+derivation [ACCRUED_FEES_AMOUNT] --> Lnk_Lkp_To_Jn.ACCRUED_FEES_AMOUNT
+derivation [EARNINGS_BEFORE_INT_AND_TAXES] --> ''
+derivation [TOTAL_REVENUE] --> ''
+derivation [EXPENSES] --> IF IsNull(Lnk_Lkp_To_Jn.EXPENSES) 
+Then '' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.EXPENSES,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.EXPENSES,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.EXPENSES,"suppress_zero")
+derivation [NET_INCOME] --> ''
+derivation [CUMTVE_LIFETIME_FAIR_VALUE_ADJ] --> '0.00'
+derivation [CUMTVE_LIFETIME_PURCHASE_IMPRS] --> '0.00'
+derivation [BASEL_PORTFOLIO_ID] --> ''
+derivation [LOCAL_PRODUCT_ID] --> IF IsNull(Lnk_Lkp_To_Jn.LOCAL_PRODUCT_ID) 
+Then '' Else Lnk_Lkp_To_Jn.LOCAL_PRODUCT_ID
+derivation [AFFILIATE_CODE] --> ''
+derivation [BUSINESS_UNIT] --> ''
+derivation [OPERATING_UNIT] --> ''
+derivation [GLOBAL_ORGANIZATION_CODE] --> Lnk_Lkp_To_Jn.GLOBAL_ORGANIZATION_CODE
+derivation [BASEL_PRODUCT] --> Lnk_Lkp_To_Jn.BASEL_PRODUCT
+derivation [MANAGED_SEGMENT_ID] --> Lnk_Lkp_To_Jn.MANAGED_SEGMENT_ID
+derivation [PMAC_PORTFOLIO_ID] --> '1611180'
+derivation [ENTERPRISE_STANDARD_PRODUCT_ID] --> ''
+derivation [MANAGED_GEOGRAPHY] --> 'ID'
+derivation [REQUESTED_PRODUCT_TYPE] --> ''
+derivation [LOCAL_DELQ_BUCKET_MONTH_END] --> Lnk_Lkp_To_Jn.LOCAL_DELQ_BUCKET_MONTH_END
+derivation [DELQ_STRING_24_MTH_MONTH_END] --> Lnk_Lkp_To_Jn.DELQ_STRING_24_MTH_MONTH_END
+derivation [DELQ_BAND_NORMALIZED_MONTH_END] --> Lnk_Lkp_To_Jn.DELQ_BAND_NORMALIZED_MONTH_END
+derivation [DELQ_BAND_NORM_BASIS_MOED] --> "1"
+derivation [DELINQUENT_AMOUNT_CAPITALIZED] --> ''
+derivation [ACCT_60_DPD_LAST_THREE_YEARS] --> ''
+derivation [DELINQUENCY_FLAG] --> Lnk_Lkp_To_Jn.DELINQUENCY_FLAG
+derivation [DAYS_PAST_DUE_MONTH_END] --> Lnk_Lkp_To_Jn.DAYS_PAST_DUE_MONTH_END
+derivation [DELINQUENCY_START_DATE] --> ''
+derivation [DELINQUENCY_END_DATE] --> ''
+derivation [DELINQUENCY_DURATION] --> '0'
+derivation [EVER_90_DPD_PAST_12_MONTHS] --> Lnk_Lkp_To_Jn.EVER_90_DPD_PAST_12_MONTHS
+derivation [DEFICIENCY_BAL_COLLN_OPTION] --> "4"
+derivation [DEFICIENCY_BAL_COLLN_STATUS] --> ''
+derivation [ESCROW_AMT_BEFORE_MODN] --> '0.00'
+derivation [ESCROW_AMT_AFTER_MODIFICATION] --> '0.00'
+derivation [CURRENTLY_IN_COLLECTIONS] --> ""
+derivation [COLLECTIONS_ASSIGNMENT] --> "1"
+derivation [COLLECTIONS_ENTERED_DATE] --> ""
+derivation [LAST_COLLECTION_EXIT_REASON] --> ''
+derivation [FORECLOSURE_STATUS_CODE] --> ''
+derivation [FORECLOSURE_REPOSSESS_START_DT] --> ''
+derivation [OTHER_REAL_EST_OWNED_STATUS_DT] --> ''
+derivation [SHORT_SALE_AMOUNT] --> '0.00'
+derivation [FORECLOSURE_SALE_DATE] --> ''
+derivation [FORECLOSURE_REFERRAL_DATE] --> ''
+derivation [FORECLOSURE_SUSPENDED] --> 'N'
+derivation [REAL_ESTATE_OWNED_CODE] --> ''
+derivation [SALES_PRICE_OF_PROPERTY] --> '0.00'
+derivation [OREO_PROPERTY_SOLD_DISPOSE_DT] --> ''
+derivation [BANKRUPTCY_CHARGE_OFF_DATE] --> ''
+derivation [ACCOUNT_BANKRUPTCY_FILED_FLAG] --> ''
+derivation [BANKRUPTCY_CHAPTER] --> ''
+derivation [ACCOUNT_BANKRUPTCY_DATE] --> ''
+derivation [FULL_CHARGE_OFF_DATE] --> Lnk_Lkp_To_Jn.FULL_CHARGE_OFF_DATE
+derivation [LAST_CHARGE_OFF_REASON_CODE] --> ''
+derivation [POST_CHARGEOFF_SALE_PROCEEDS] --> ''
+derivation [PRINCIPAL_WRITE_DOWN_FLAG] --> 'N'
+derivation [LAST_WRITEDOWN_DATE] --> ''
+derivation [CHARGE_OFF_FLAG] --> Lnk_Lkp_To_Jn.CHARGE_OFF_FLAG
+derivation [LTD_PRIN_WRITE_OFFS_IMP_ALLL] --> '0.00'
+derivation [LTD_PRIN_WRITE_OFFS_NOIMP_ALLL] --> '0.00'
+derivation [LTD_PRIN_REV_IMPACTING_ALLL] --> ''
+derivation [LTD_PRIN_REV_NOIMP_ALLL] --> ''
+derivation [LTD_INT_WRITE_OFFS_IMP_ALLL] --> '0.00'
+
+derivation [LTD_INT_WRITE_OFFS_NOIMP_ALLL] --> '0.00'
+derivation [LTD_FEE_WRITE_OFFS_IMP_ALLL] --> '0.00'
+
+derivation [LTD_FEE_WRITE_OFFS_NOIMP_ALLL] --> '0.00'
+derivation [TOTAL_CREDIT_LOSS] --> '0.00'
+derivation [LOSS_MITN_EVER_ENROLLED_FLAG] --> ''
+derivation [LOSS_MITN_EVENT_FAS91_BAL] --> ''
+derivation [LOSS_MITN_EVT_LTD_FFIEC_WRTDWN] --> '0.00'
+derivation [GOVT_MODIFICATION_INDICATOR] --> ''
+derivation [LOSS_MITN_PERFORMANCE_STATUS] --> ''
+derivation [TROUBLE_DEBT_RESTRUCTURE_FLAG] --> 'N'
+derivation [LOAN_MODIFICATION_TYPE] --> ''
+derivation [LOSS_MITN_REPAY_PLN_PERFM_STAT] --> ''
+derivation [LOSS_MITN_INT_TYPE_CONV_DURN] --> ''
+derivation [LAST_SETTLEMENT_NEGOTIATED_AMT] --> ''
+derivation [REPAYMENT_PLAN_START_DATE] --> ''
+derivation [TERM_MODIFICATION_FLAG] --> 'N'
+derivation [REAGE_DATE] --> ''
+derivation [LAST_WORKOUT_TYPE_C_OR_E] --> ''
+derivation [TROUBLED_DEBT_RESTRUCTURE_DATE] --> ''
+derivation [LOAN_MODIFICATION_FLAG] --> 'N'
+derivation [LOAN_MODIFICATION_DATE] --> ''
+derivation [LOAN_MODIFICATION_FDIC_TYPE] --> ''
+derivation [PRINCIPAL_FORGIVENESS_AMOUNT] --> '0.00'
+derivation [OTHER_MODN_ACTION_TYPE] --> ''
+derivation [REMAINING_TERM_BEFORE_MODN] --> 0
+derivation [REMAINING_TERM_AFTER_MODN] --> ''
+derivation [ALT_HOME_LIQN_LOSS_MITN_DT] --> ''
+derivation [ALT_HOME_RETN_LOSS_MITN_DT] --> ''
+derivation [LOAN_MODIFICATION_EVENT_FLAG] --> ''
+derivation [ARM_INITIAL_RATE_CAP] --> '0.00'
+derivation [ARM_INITIAL_PAYMENT_ADJ_PERIOD] --> ''
+derivation [ARM_INITIAL_PAYMENT_ADJ_CAP] --> '0.00'
+
+derivation [ORIGINAL_MONTHLY_PAYMENT] --> IF IsNull(Lnk_Lkp_To_Jn.ORIGINAL_MONTHLY_PAYMENT) 
+Then '0.00' Else If Index(DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_MONTHLY_PAYMENT,"suppress_zero"), '.',1)=0 THEN 
+DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_MONTHLY_PAYMENT,"suppress_zero") : '.00' 
+ELSE DecimalToString(Lnk_Lkp_To_Jn.ORIGINAL_MONTHLY_PAYMENT,"suppress_zero")
+derivation [INTEREST_RATE_MARGIN_TYPE] --> 'A'
+derivation [ARM_INITIAL_RATE] --> ''
+derivation [ARM_INITIAL_RATE_PERIOD] --> Lnk_Lkp_To_Jn.ARM_INITIAL_RATE_PERIOD
+derivation [ARM_PAYMENT_RESET_FREQUENCY] --> ''
+derivation [NEGATIVE_AMORT_PERCENT_LMT] --> '0.00'
+derivation [ARM_PERIODIC_RATE_CAP] --> '0.00'
+derivation [ARM_PERIODIC_RATE_FLOOR] --> '0.00'
+derivation [ARM_LIFETIME_RATE_FLOOR] --> ''
+derivation [ARM_PERIODIC_PAYMENT_CAP] --> '0.00'
+
+derivation [ARM_PERIODIC_PAY_FLOOR] --> ''
+derivation [OPTION_ARM_IN_REPORTING_MONTH] --> ''
+derivation [INTEREST_RATE_FROZEN_FLAG] --> ''
+derivation [ARM_MARGIN_AT_ORIGIN] --> ''
+derivation [INTEREST_ONLY_AT_ORIGIN] --> ''
+derivation [OPTION_ARM_FLAG] --> ''
+derivation [INTEREST_TYPE_AT_ORIGIN] --> '1'
+derivation [INTEREST_TYPE_IN_CURRENT_MONTH] --> '1'
+derivation [ORIGINAL_INTEREST_RATE] --> Lnk_Lkp_To_Jn.ORIGINAL_INTEREST_RATE
+derivation [INTEREST_RATE_INDEX_MONTH_END] --> '00'
+derivation [INTEREST_RATE_SPREAD_MONTH_END] --> '0.00'
+
+derivation [RT_RESET_PERIODICITY_INTVL_ID] --> '10007'
+derivation [INTEREST_RATE_TYPE] --> '19'
+derivation [INT_RATE_EFFECTIVE_DT_MOED] --> ''
+derivation [INT_RATE_EXP_DT_MOED] --> ''
+derivation [PROMO_INTEREST_RATE_ELIGIBLE] --> Lnk_Lkp_To_Jn.PROMO_INTEREST_RATE_ELIGIBLE
+derivation [INTEREST_RATE_MONTH_END] --> Lnk_Lkp_To_Jn.INTEREST_RATE_MONTH_END
+derivation [INT_RATE_ACTIVE_FLAG_MONTH_END] --> 'Y'
+derivation [INT_RATE_BEFORE_MODIFICATION] --> '0.00'
+
+derivation [INT_RATE_AFTER_MODIFICATION] --> '0.00'
+derivation [ORIGINAL_ACCOUNT_NUMBER_1] --> Lnk_Lkp_To_Jn.ORIGINAL_ACCOUNT_NUMBER_1
+derivation [ORIGINAL_ACCOUNT_NUMBER_2] --> ''
+derivation [ORIGINAL_ACCOUNT_NUMBER_3] --> ''
+derivation [ORIGINAL_ACCOUNT_NUMBER_4] --> ''
+derivation [ORIGINAL_ACCOUNT_NUMBER_5] --> ''
+derivation [ORIGINAL_ACCOUNT_NUMBER_6] --> ''
+derivation [ORIGINAL_ACCOUNT_NUMBER_7] --> ''
+derivation [ORIGINAL_ACCOUNT_NUMBER_8] --> ''
+derivation [ABOVE_CUT_OFF_SCORE_FLAG] --> ''
+derivation [APPLICATION_OVERRIDE_FLAG] --> "N"
+derivation [APPLICATION_OVERRIDE_REASON] --> 'N'
+derivation [APP_OVERRIDE_LINE_LOAN_AMT] --> '0.00'
+derivation [ORIGINAL_LOCAL_SCORE] --> ''
+derivation [ASSET_VERIFICATION_TYPE] --> '3'
+derivation [BOOKING_PRICING_EXCEPTION_FLAG] --> 'N'
+derivation [BOOKING_PROCESS_EXCEPTION_FLAG] --> 'N'
+derivation [DBT_INC_BACK_END_AT_ORIGIN] --> '0.00'
+
+derivation [DBT_INC_FRONT_END_AT_ORIGIN] --> '0.00'
+derivation [LOAN_SOURCE_OR_CHANNEL] --> '5'
+derivation [LOAN_APPROVER_ID] --> ''
+derivation [LOAN_REVIEWER_ID] --> ''
+derivation [BOOKING_EXCEPTION_REASON_CODE] --> ''
+derivation [FIRST_APPLICATION_DATE] --> ''
+derivation [LAST_APPLICATION_DATE] --> ''
+derivation [FIRST_APPROVAL_DATE] --> Lnk_Lkp_To_Jn.FIRST_APPROVAL_DATE
+derivation [FIRST_APPROVAL_TYPE] --> '1'
+derivation [LAST_REAPPROVAL_TYPE] --> '1'
+derivation [LAST_APPROVAL_DATE] --> Lnk_Lkp_To_Jn.LAST_APPROVAL_DATE
+derivation [LAST_APPROVAL_ADJUDN_BASIS] --> '3'
+derivation [CREDIT_ADJUDICATION_PROGRAM] --> '1'
+derivation [BASEL_SCORE_BAND] --> ''
+derivation [ORIG_ACCT_INCOME_DOC_TYPE] --> '1'
+derivation [ORIG_ACCT_INCOME_DOC_TYPE2] --> '1'
+derivation [CITIGROUP_STAFF_ACCT_IND] --> Lnk_Lkp_To_Jn.CITIGROUP_STAFF_ACCT_IND
+derivation [CITIGROUP_VIP_ACCT_IND] --> ''
+derivation [NET_RECOVERY_AMOUNT] --> ''
+derivation [CREDIT_CLASS] --> ''
+derivation [GRACE_PERIOD_DAY_COUNT] --> Lnk_Lkp_To_Jn.GRACE_PERIOD_DAY_COUNT
+derivation [REPURCHASE_REQUEST_DATE] --> ''
+derivation [LOAN_REPURCHASE_TYPE] --> "0"
+derivation [REPURCHASE_COMPLETION_DATE] --> ''
+derivation [NOTICE_OF_DEFAULT_DATE] --> ''
+derivation [PREPMT_PENALTY_WAIVED_THIS_MON] --> 'X'
+derivation [PREPMT_PENALTY_WAIVED_AMOUNT] --> ''
+derivation [ARM_LAST_RESET_DATE] --> Lnk_Lkp_To_Jn.ARM_LAST_RESET_DATE
+derivation [PRIN_OR_INT_RECOURSE_FLAG] --> "N"
+derivation [PRIN_OR_INT_RECOURSE_AMOUNT] --> ''
+derivation [PRIN_OR_INT_RECOURSE_ENTITY] --> ''
+derivation [ACCOUNT_NUMBER] --> Lnk_Lkp_To_Jn.ACCOUNT_NUMBER
+derivation [ORIGINAL_ACCOUNT_NUMBER_1] --> Trim(Lnk_Lkp_To_Jn.ORIGINAL_ACCOUNT_NUMBER_1)
+derivation [REPORTING_PERIOD] --> DSLink51.REPORTING_PERIOD
+derivation [ACCOUNT_NUMBER] --> Lnk_Encrypted_Vals.Col1
+derivation [ARRGMNT_BUSINESS_INTENT_TYPE] --> DSLink51.ARRGMNT_BUSINESS_INTENT_TYPE
+derivation [ACCOUNT_OPEN_DATE] --> DSLink51.ACCOUNT_OPEN_DATE
+derivation [SOLD_DATE] --> DSLink51.SOLD_DATE
+derivation [SOLD_STATUS] --> DSLink51.SOLD_STATUS
+derivation [SKIP_PAYMENT_DATE] --> DSLink51.SKIP_PAYMENT_DATE
+derivation [SKIP_PAYMENT_ELIGIBLE] --> DSLink51.SKIP_PAYMENT_ELIGIBLE
+derivation [SKIP_PAYMENT_COUNT_LTD] --> DSLink51.SKIP_PAYMENT_COUNT_LTD
+derivation [NEGATIVE_AMORTIZATION_DATE] --> DSLink51.NEGATIVE_AMORTIZATION_DATE
+derivation [CREDIT_TEST_ACCOUNT_FLAG] --> DSLink51.CREDIT_TEST_ACCOUNT_FLAG
+derivation [BOOK_OF_BUSINESS] --> DSLink51.BOOK_OF_BUSINESS
+derivation [ORIGINATING_BRANCH] --> DSLink51.ORIGINATING_BRANCH
+derivation [DATE_OF_LAST_INTEREST_REVERSAL] --> DSLink51.DATE_OF_LAST_INTEREST_REVERSAL
+derivation [LOCAL_BLOCK_CODE_2] --> DSLink51.LOCAL_BLOCK_CODE_2
+derivation [PAYMENT_RETURNED_FLAG] --> DSLink51.PAYMENT_RETURNED_FLAG
+derivation [LIEN_INDICATOR] --> DSLink51.LIEN_INDICATOR
+derivation [NUMBER_OF_BORROWERS] --> DSLink51.NUMBER_OF_BORROWERS
+derivation [SENIOR_LIEN_PRODUCT_AT_ORIGIN] --> DSLink51.SENIOR_LIEN_PRODUCT_AT_ORIGIN
+derivation [SILENT_SECOND_FLAG] --> DSLink51.SILENT_SECOND_FLAG
+derivation [LAST_PREPMT_EARLY_PAYOUT_RSN] --> DSLink51.LAST_PREPMT_EARLY_PAYOUT_RSN
+derivation [ORIGINAL_AMORTIZATION_PERIOD] --> DSLink51.ORIGINAL_AMORTIZATION_PERIOD
+derivation [REPAYMENT_TYPE_AT_ORIGIN] --> DSLink51.REPAYMENT_TYPE_AT_ORIGIN
+derivation [REPAYMENT_TERM] --> DSLink51.REPAYMENT_TERM
+derivation [LOCAL_PROGRAM_DESCRIPTION] --> DSLink51.LOCAL_PROGRAM_DESCRIPTION
+derivation [LAST_FULL_PAYMENT_DATE] --> DSLink51.LAST_FULL_PAYMENT_DATE
+derivation [LAST_PAYMENT_DUE_DATE] --> DSLink51.LAST_PAYMENT_DUE_DATE
+derivation [LOAN_PARTICIPATION_RATE] --> DSLink51.LOAN_PARTICIPATION_RATE
+derivation [CITI_EMPLOYEE_LOAN_ORIGIN_TYPE] --> DSLink51.CITI_EMPLOYEE_LOAN_ORIGIN_TYPE
+derivation [BLD_UNDER_CONSTRUCTION_TYPE] --> DSLink51.BLD_UNDER_CONSTRUCTION_TYPE
+derivation [CPF_LIEN_POSITION] --> DSLink51.CPF_LIEN_POSITION
+derivation [LAST_PAYMENT_DATE] --> DSLink51.LAST_PAYMENT_DATE
+derivation [FIRST_NON_ACCRUAL_DATE] --> DSLink51.FIRST_NON_ACCRUAL_DATE
+derivation [SECURITIZED_FLAG] --> DSLink51.SECURITIZED_FLAG
+derivation [FIRST_PAYMENT_DATE] --> DSLink51.FIRST_PAYMENT_DATE
+derivation [BALLOON_TERM] --> DSLink51.BALLOON_TERM
+derivation [BUYDOWN_FLAG] --> DSLink51.BUYDOWN_FLAG
+derivation [ARM_LIFETIME_RATE_CAP] --> DSLink51.ARM_LIFETIME_RATE_CAP
+derivation [NEGATIVE_AMORTIZATION_FLAG] --> DSLink51.NEGATIVE_AMORTIZATION_FLAG
+derivation [PRE_PAYMENT_PENALTY_FLAG] --> DSLink51.PRE_PAYMENT_PENALTY_FLAG
+derivation [PRE_PAYMENT_PENALTY_TERM] --> DSLink51.PRE_PAYMENT_PENALTY_TERM
+derivation [MORTGAGE_INVESTOR_TYPE] --> DSLink51.MORTGAGE_INVESTOR_TYPE
+derivation [SERVICER_ADVANCES] --> DSLink51.SERVICER_ADVANCES
+derivation [NEXT_PAYMENT_DUE_DATE] --> DSLink51.NEXT_PAYMENT_DUE_DATE
+derivation [REMAINING_TERM] --> DSLink51.REMAINING_TERM
+derivation [PAID_IN_FULL_CODING] --> DSLink51.PAID_IN_FULL_CODING
+derivation [REPURCHASE_REQ_PUT_BACK_DATE] --> DSLink51.REPURCHASE_REQ_PUT_BACK_DATE
+derivation [LOAN_REPURCHASE_PUT_BACK_TYPE] --> DSLink51.LOAN_REPURCHASE_PUT_BACK_TYPE
+derivation [REFRESHED_DBT_INC_RATIO_BCKEND] --> DSLink51.REFRESHED_DBT_INC_RATIO_BCKEND
+derivation [REFRESHED_DBT_INC_RATIO_FRNEND] --> DSLink51.REFRESHED_DBT_INC_RATIO_FRNEND
+derivation [HOME_AFFORDABLE_REFINANCE_FLAG] --> DSLink51.HOME_AFFORDABLE_REFINANCE_FLAG
+derivation [HAMP_LOAN_NUMBER] --> DSLink51.HAMP_LOAN_NUMBER
+derivation [STEP_MODIFICATION_FLAG] --> DSLink51.STEP_MODIFICATION_FLAG
+derivation [REPORTED_AS_BANK_OWNED_FLAG] --> DSLink51.REPORTED_AS_BANK_OWNED_FLAG
+derivation [ACCOUNTING_BASIS] --> DSLink51.ACCOUNTING_BASIS
+derivation [HOME_EQUITY_LIQUIDATION_STATUS] --> DSLink51.HOME_EQUITY_LIQUIDATION_STATUS
+derivation [FIRST_MORT_SERVICED_IN_HOUSE] --> DSLink51.FIRST_MORT_SERVICED_IN_HOUSE
+derivation [CREDIT_LINE_FROZEN_FLAG] --> DSLink51.CREDIT_LINE_FROZEN_FLAG
+derivation [LOCKOUT_FEATURE_FLAG] --> DSLink51.LOCKOUT_FEATURE_FLAG
+derivation [LOAN_DRAW_END_DATE] --> DSLink51.LOAN_DRAW_END_DATE
+derivation [LOAN_MODN_INT_REDUCTION] --> DSLink51.LOAN_MODN_INT_REDUCTION
+derivation [LOAN_EXTENSION_FLAG] --> DSLink51.LOAN_EXTENSION_FLAG
+derivation [ACQUISITION_DATE] --> DSLink51.ACQUISITION_DATE
+derivation [JOINT_ACCOUNT] --> DSLink51.JOINT_ACCOUNT
+derivation [LINE_FROZEN_CURR_MONTH_FLAG] --> DSLink51.LINE_FROZEN_CURR_MONTH_FLAG
+derivation [INTEREST_RATE_FLAG_MONTH_END] --> DSLink51.INTEREST_RATE_FLAG_MONTH_END
+derivation [ACCOUNT_STATUS_CLOSED_MOED] --> DSLink51.ACCOUNT_STATUS_CLOSED_MOED
+derivation [LOAN_FUNDING_CLOSE_DATE] --> DSLink51.LOAN_FUNDING_CLOSE_DATE
+derivation [LAST_MODIFIED_DATE] --> DSLink51.LAST_MODIFIED_DATE
+derivation [ACCOUNT_STATUS] --> DSLink51.ACCOUNT_STATUS
+derivation [ACCOUNT_CYCLE_DATE] --> DSLink51.ACCOUNT_CYCLE_DATE
+derivation [SCORE_EXCEPTION_FLAG] --> DSLink51.SCORE_EXCEPTION_FLAG
+derivation [NATURAL_CURRENCY] --> DSLink51.NATURAL_CURRENCY
+derivation [CLOSED_DATE] --> DSLink51.CLOSED_DATE
+derivation [ORIGINAL_LOAN_MATURITY_DATE] --> DSLink51.ORIGINAL_LOAN_MATURITY_DATE
+derivation [REVOLVING_FLAG] --> DSLink51.REVOLVING_FLAG
+derivation [ORIGINAL_LOAN_TO_VALUE] --> DSLink51.ORIGINAL_LOAN_TO_VALUE
+derivation [MONTHS_ON_BOOK_LOCAL] --> DSLink51.MONTHS_ON_BOOK_LOCAL
+derivation [ORIGIN_CHANNEL] --> DSLink51.ORIGIN_CHANNEL
+derivation [LOAN_TYPE] --> DSLink51.LOAN_TYPE
+derivation [MORTGAGE_TYPE] --> DSLink51.MORTGAGE_TYPE
+derivation [MORTGAGE_TYPE_2] --> DSLink51.MORTGAGE_TYPE_2
+derivation [BOOKED_USING_STANDARD_SCORE] --> DSLink51.BOOKED_USING_STANDARD_SCORE
+derivation [ORIGINAL_LOAN_TERM] --> DSLink51.ORIGINAL_LOAN_TERM
+derivation [TOP_UP_FLAG] --> DSLink51.TOP_UP_FLAG
+derivation [LOCAL_BLOCK_CODE] --> DSLink51.LOCAL_BLOCK_CODE
+derivation [CURRENCY_CODE] --> DSLink51.CURRENCY_CODE
+derivation [ACCOUNT_SOURCE] --> DSLink51.ACCOUNT_SOURCE
+derivation [SKIP_A_PAYMENT] --> DSLink51.SKIP_A_PAYMENT
+derivation [HOUSEHOLD_ID] --> DSLink51.HOUSEHOLD_ID
+derivation [PRODUCT_CCAR_TYPE] --> DSLink51.PRODUCT_CCAR_TYPE
+derivation [RISK_MITIGANT_TYPE] --> DSLink51.RISK_MITIGANT_TYPE
+derivation [RISK_MITIGANT_SUB_TYPE_1] --> DSLink51.RISK_MITIGANT_SUB_TYPE_1
+derivation [RISK_MITIGANT_SUB_TYPE_2] --> DSLink51.RISK_MITIGANT_SUB_TYPE_2
+derivation [RISK_MITIGANT_SUB_TYPE_3] --> DSLink51.RISK_MITIGANT_SUB_TYPE_3
+derivation [RISK_MITIGANT_SUB_TYPE_4] --> DSLink51.RISK_MITIGANT_SUB_TYPE_4
+derivation [LIMIT_EVENT_CODE] --> DSLink51.LIMIT_EVENT_CODE
+derivation [LIMIT_EVENT_AMOUNT] --> DSLink51.LIMIT_EVENT_AMOUNT
+derivation [ACTUAL_PAYOFF_DATE] --> DSLink51.ACTUAL_PAYOFF_DATE
+derivation [LIMIT_EVENT_DATE] --> DSLink51.LIMIT_EVENT_DATE
+derivation [LIMIT_EVENT_INITIATED_CODE] --> DSLink51.LIMIT_EVENT_INITIATED_CODE
+derivation [REPAYMENT_TYPE] --> DSLink51.REPAYMENT_TYPE
+derivation [REPAYMENT_INT_ONLY_EXP_DT] --> DSLink51.REPAYMENT_INT_ONLY_EXP_DT
+derivation [BALLOON_PAYMENT_EXISTS] --> DSLink51.BALLOON_PAYMENT_EXISTS
+derivation [CURR_NEGATIVE_AMORTIZING_FLAG] --> DSLink51.CURR_NEGATIVE_AMORTIZING_FLAG
+derivation [NON_TRADITIONAL_MORTGAGE] --> DSLink51.NON_TRADITIONAL_MORTGAGE
+derivation [PRINCIPAL_DEFERRAL_OPTION] --> DSLink51.PRINCIPAL_DEFERRAL_OPTION
+derivation [PRIN_DEF_OPTION_EXP_DT] --> DSLink51.PRIN_DEF_OPTION_EXP_DT
+derivation [INTEREST_DEFERRAL_OPTION] --> DSLink51.INTEREST_DEFERRAL_OPTION
+derivation [INT_DEFERRAL_OPTION_EXP_DT] --> DSLink51.INT_DEFERRAL_OPTION_EXP_DT
+derivation [PRODUCT_FDIC_TYPE] --> DSLink51.PRODUCT_FDIC_TYPE
+derivation [LINE_REAGE] --> DSLink51.LINE_REAGE
+derivation [LOAN_OR_LINE_OWNER] --> DSLink51.LOAN_OR_LINE_OWNER
+derivation [ACCRUAL_STATUS] --> DSLink51.ACCRUAL_STATUS
+derivation [REASON_FOR_DEFAULT] --> DSLink51.REASON_FOR_DEFAULT
+derivation [THIRD_PARTY_SALE_FLAG] --> DSLink51.THIRD_PARTY_SALE_FLAG
+derivation [PERFORMANCE_OF_FIRST_LIEN] --> DSLink51.PERFORMANCE_OF_FIRST_LIEN
+derivation [COMMERCIAL_LOAN_FLAG] --> DSLink51.COMMERCIAL_LOAN_FLAG
+derivation [REMODIFIED_FLAG] --> DSLink51.REMODIFIED_FLAG
+derivation [PERFORMANCE_OF_JUNIOR_LIENS] --> DSLink51.PERFORMANCE_OF_JUNIOR_LIENS
+derivation [INTEREST_ONLY_TERM_ORIGINAL] --> DSLink51.INTEREST_ONLY_TERM_ORIGINAL
+derivation [MORTGAGE_TYPE_AT_ORIGIN] --> DSLink51.MORTGAGE_TYPE_AT_ORIGIN
+derivation [LAST_FUNDS_ADVANCED_DATE] --> DSLink51.LAST_FUNDS_ADVANCED_DATE
+derivation [FUNDS_ADVANCED_COMPLETE_FLAG] --> DSLink51.FUNDS_ADVANCED_COMPLETE_FLAG
+derivation [HELD_FOR_SALE_BALANCE] --> DSLink51.HELD_FOR_SALE_BALANCE
+derivation [ARRANGEMENT_PURPOSE_CODE] --> DSLink51.ARRANGEMENT_PURPOSE_CODE
+derivation [CURR_LOAN_LEASE_MATURITY_DATE] --> DSLink51.CURR_LOAN_LEASE_MATURITY_DATE
+derivation [LAST_BASEL_DEFAULT_START_DATE] --> DSLink51.LAST_BASEL_DEFAULT_START_DATE
+derivation [CUT_OFF_SCORE] --> DSLink51.CUT_OFF_SCORE
+derivation [LAST_BASEL_DEFAULT_END_DATE] --> DSLink51.LAST_BASEL_DEFAULT_END_DATE
+derivation [TOP_UP_CUT_OFF_SCORE] --> DSLink51.TOP_UP_CUT_OFF_SCORE
+derivation [REPURCH_PUT_BACK_COMPLETION_DT] --> DSLink51.REPURCH_PUT_BACK_COMPLETION_DT
+derivation [RISK_MANAGEMENT_TYPE] --> DSLink51.RISK_MANAGEMENT_TYPE
+derivation [ACCT_SUSPENSION_TEMP_BLOCK_RSN] --> DSLink51.ACCT_SUSPENSION_TEMP_BLOCK_RSN
+derivation [LAST_ACTIVITY_DATE] --> DSLink51.LAST_ACTIVITY_DATE
+derivation [ACCT_SUSPENSION_TEMP_BLOCK_DT] --> DSLink51.ACCT_SUSPENSION_TEMP_BLOCK_DT
+derivation [APPLICATION_ID] --> DSLink51.APPLICATION_ID
+derivation [CREDIT_EXPIRATION_DATE] --> DSLink51.CREDIT_EXPIRATION_DATE
+derivation [HOUSEHOLD_TOTAL_INCOME] --> DSLink51.HOUSEHOLD_TOTAL_INCOME
+derivation [LAST_RENEWAL_DATE] --> DSLink51.LAST_RENEWAL_DATE
+derivation [LAST_NON_ACCRUAL_EFFECTIVE_DT] --> DSLink51.LAST_NON_ACCRUAL_EFFECTIVE_DT
+derivation [LOAN_TERM_END_DATE] --> DSLink51.LOAN_TERM_END_DATE
+derivation [END_OF_PERIOD_COMM_UNDRW_LINE] --> DSLink51.END_OF_PERIOD_COMM_UNDRW_LINE
+derivation [ASSET_VALUE_ACCT_ENTERED_OREO] --> DSLink51.ASSET_VALUE_ACCT_ENTERED_OREO
+derivation [CURRENT_ADVISED_COMMITTED_LINE] --> DSLink51.CURRENT_ADVISED_COMMITTED_LINE
+derivation [LOAN_AMOUNT] --> DSLink51.LOAN_AMOUNT
+derivation [LOAN_ADVANCES] --> DSLink51.LOAN_ADVANCES
+derivation [CREDIT_LINE_UTILIZATION] --> DSLink51.CREDIT_LINE_UTILIZATION
+derivation [CURR_UNDRW_ADV_UNCT_LMT_MOED] --> DSLink51.CURR_UNDRW_ADV_UNCT_LMT_MOED
+derivation [CURR_UNDRW_UNADV_UNCT_LMT_MOED] --> DSLink51.CURR_UNDRW_UNADV_UNCT_LMT_MOED
+derivation [LAST_CREDIT_USAGE_DATE] --> DSLink51.LAST_CREDIT_USAGE_DATE
+derivation [SENIOR_LIEN_UPB_AT_ORIGIN] --> DSLink51.SENIOR_LIEN_UPB_AT_ORIGIN
+derivation [ASSET_VALUE_AT_ORIGIN] --> DSLink51.ASSET_VALUE_AT_ORIGIN
+derivation [CPF_LOAN_AMOUNT] --> DSLink51.CPF_LOAN_AMOUNT
+derivation [LOAN_TO_VALUE_AT_DEFAULT] --> DSLink51.LOAN_TO_VALUE_AT_DEFAULT
+derivation [PAYMENT_MISSED_COUNT] --> DSLink51.PAYMENT_MISSED_COUNT
+derivation [PAYMENT_AMOUNT_MONTH_END] --> DSLink51.PAYMENT_AMOUNT_MONTH_END
+derivation [PRINCIPAL_DEFERRAL_AMOUNT] --> DSLink51.PRINCIPAL_DEFERRAL_AMOUNT
+derivation [PRINCIPAL_PAID] --> DSLink51.PRINCIPAL_PAID
+derivation [PRINCIPAL_WAIVED] --> DSLink51.PRINCIPAL_WAIVED
+derivation [ORIGINAL_PRINCIPAL_AMOUNT] --> DSLink51.ORIGINAL_PRINCIPAL_AMOUNT
+derivation [ORIGINAL_COMBINED_LTV] --> DSLink51.ORIGINAL_COMBINED_LTV
+derivation [PRIN_AND_INT_AMT_AT_ORIGIN] --> DSLink51.PRIN_AND_INT_AMT_AT_ORIGIN
+derivation [SCHEDULED_PRIN_BALANCE_AMT] --> DSLink51.SCHEDULED_PRIN_BALANCE_AMT
+derivation [REFRESHED_COMBLTV_AFTER_MODN] --> DSLink51.REFRESHED_COMBLTV_AFTER_MODN
+derivation [LOCKED_AMT_AMORT_LOC] --> DSLink51.LOCKED_AMT_AMORT_LOC
+derivation [LOCKED_AMT_INT_ONLY_LOC] --> DSLink51.LOCKED_AMT_INT_ONLY_LOC
+derivation [GROSS_OUTSTNG_TOT_BAL_MOED] --> DSLink51.GROSS_OUTSTNG_TOT_BAL_MOED
+derivation [MINIMUM_PAYMENT_DUE] --> DSLink51.MINIMUM_PAYMENT_DUE
+derivation [CREDIT_ENHANCED_AMOUNT] --> DSLink51.CREDIT_ENHANCED_AMOUNT
+derivation [CURRENT_COMBINED_LOAN_TO_VALUE] --> DSLink51.CURRENT_COMBINED_LOAN_TO_VALUE
+derivation [CURRENT_LOAN_TO_VALUE] --> DSLink51.CURRENT_LOAN_TO_VALUE
+derivation [PAYMENT_AMOUNT_CYCLE_END] --> DSLink51.PAYMENT_AMOUNT_CYCLE_END
+derivation [OUTSTANDING_BALANCE_CYCLE_END] --> DSLink51.OUTSTANDING_BALANCE_CYCLE_END
+derivation [JUNIOR_LIENS_AT_ORIGIN] --> DSLink51.JUNIOR_LIENS_AT_ORIGIN
+derivation [GROSS_OUTSTNG_PRIN_BAL_MOED] --> DSLink51.GROSS_OUTSTNG_PRIN_BAL_MOED
+derivation [ORIGAL_TOT_ADV_COMM_LMT_MOED] --> DSLink51.ORIGAL_TOT_ADV_COMM_LMT_MOED
+derivation [ORIG_TOT_ADV_UNCT_LMT_MOED] --> DSLink51.ORIG_TOT_ADV_UNCT_LMT_MOED
+derivation [ORIG_TOT_UNADV_UNCT_LMT_MOED] --> DSLink51.ORIG_TOT_UNADV_UNCT_LMT_MOED
+derivation [CURR_TOT_ADV_UNCT_LMT_MOED] --> DSLink51.CURR_TOT_ADV_UNCT_LMT_MOED
+derivation [CURR_TOT_UNADV_UNCT_LMT_MOED] --> DSLink51.CURR_TOT_UNADV_UNCT_LMT_MOED
+derivation [ENDING_NET_RECEIVABLES_LOCAL] --> DSLink51.ENDING_NET_RECEIVABLES_LOCAL
+derivation [BALLOON_PAYMENT_AMOUNT] --> DSLink51.BALLOON_PAYMENT_AMOUNT
+derivation [PRINCIPAL_REVERSALS] --> DSLink51.PRINCIPAL_REVERSALS
+derivation [TOTAL_FUNDS_DISBURSED] --> DSLink51.TOTAL_FUNDS_DISBURSED
+derivation [TOTAL_CREDIT_LINE] --> DSLink51.TOTAL_CREDIT_LINE
+derivation [UNFUNDED_COMMITMENT_AMOUNT] --> DSLink51.UNFUNDED_COMMITMENT_AMOUNT
+derivation [CREDIT_RISK_CAPITAL] --> DSLink51.CREDIT_RISK_CAPITAL
+derivation [SPECIFIC_RESERVES] --> DSLink51.SPECIFIC_RESERVES
+derivation [PRE_PAYMENT_AMOUNT] --> DSLink51.PRE_PAYMENT_AMOUNT
+derivation [REAL_ESTATE_OWNED_GAIN_OR_LOSS] --> DSLink51.REAL_ESTATE_OWNED_GAIN_OR_LOSS
+derivation [OUTSTANDING_FEES] --> DSLink51.OUTSTANDING_FEES
+derivation [NET_OUTSTNG_PRIN_BAL_MOED] --> DSLink51.NET_OUTSTNG_PRIN_BAL_MOED
+derivation [REO_SALE_PROCEEDS] --> DSLink51.REO_SALE_PROCEEDS
+derivation [FEE_INCOME] --> DSLink51.FEE_INCOME
+derivation [FEE_REVERSAL_AMOUNT] --> DSLink51.FEE_REVERSAL_AMOUNT
+derivation [INTEREST_AND_FEE_INCOME] --> DSLink51.INTEREST_AND_FEE_INCOME
+derivation [ACCRUED_INTEREST_AND_FEE] --> DSLink51.ACCRUED_INTEREST_AND_FEE
+derivation [OUTSTANDING_INTEREST_AND_FEE] --> DSLink51.OUTSTANDING_INTEREST_AND_FEE
+derivation [BILLED_FEE] --> DSLink51.BILLED_FEE
+derivation [BILLED_INTEREST] --> DSLink51.BILLED_INTEREST
+derivation [POST_CHARGE_OFF_BALANCEF] --> DSLink51.POST_CHARGE_OFF_BALANCEF
+derivation [PRE_CHARGE_OFF_SALE_PROCEEDS] --> DSLink51.PRE_CHARGE_OFF_SALE_PROCEEDS
+derivation [PRE_CHARGE_OFF_BOOK_VALUE] --> DSLink51.PRE_CHARGE_OFF_BOOK_VALUE
+derivation [INTEREST_INCOME] --> DSLink51.INTEREST_INCOME
+derivation [CURR_PRINCIPAL_AND_INT_AMOUNT] --> DSLink51.CURR_PRINCIPAL_AND_INT_AMOUNT
+derivation [TOT_DEBT_AT_INVOLUNTARY_TERMN] --> DSLink51.TOT_DEBT_AT_INVOLUNTARY_TERMN
+derivation [ESCROW_AMOUNT_CURRENT] --> DSLink51.ESCROW_AMOUNT_CURRENT
+derivation [FEE_REVERSAL_DATE_MONTH_END] --> DSLink51.FEE_REVERSAL_DATE_MONTH_END
+derivation [FEE_PAYMENTS] --> DSLink51.FEE_PAYMENTS
+derivation [INTEREST_PAYMENTS] --> DSLink51.INTEREST_PAYMENTS
+derivation [OUTSTANDING_INTEREST] --> DSLink51.OUTSTANDING_INTEREST
+derivation [INTEREST_REVERSAL] --> DSLink51.INTEREST_REVERSAL
+derivation [LTD_INT_REV_IMPACTING_ALLL] --> DSLink51.LTD_INT_REV_IMPACTING_ALLL
+derivation [LTD_INT_REV_NOT_IMPACTING_ALLL] --> DSLink51.LTD_INT_REV_NOT_IMPACTING_ALLL
+derivation [LTD_FEE_REV_IMPACTING_ALLL] --> DSLink51.LTD_FEE_REV_IMPACTING_ALLL
+derivation [LTD_FEE_REV_NOT_IMPACTING_ALLL] --> DSLink51.LTD_FEE_REV_NOT_IMPACTING_ALLL
+derivation [PRINCIPAL_AND_INT_BEFORE_MODN] --> DSLink51.PRINCIPAL_AND_INT_BEFORE_MODN
+derivation [PRINCIPAL_AND_INT_AFTER_MODN] --> DSLink51.PRINCIPAL_AND_INT_AFTER_MODN
+derivation [ESCROW_AMOUNT_AT_ORIGIN] --> DSLink51.ESCROW_AMOUNT_AT_ORIGIN
+derivation [OTHER_REAL_ESTATE_OWNED_BAL] --> DSLink51.OTHER_REAL_ESTATE_OWNED_BAL
+derivation [ACCRUED_INTEREST_AMOUNT] --> DSLink51.ACCRUED_INTEREST_AMOUNT
+derivation [ACCRUED_FEES_AMOUNT] --> DSLink51.ACCRUED_FEES_AMOUNT
+derivation [EARNINGS_BEFORE_INT_AND_TAXES] --> DSLink51.EARNINGS_BEFORE_INT_AND_TAXES
+derivation [TOTAL_REVENUE] --> DSLink51.TOTAL_REVENUE
+derivation [EXPENSES] --> DSLink51.EXPENSES
+derivation [NET_INCOME] --> DSLink51.NET_INCOME
+derivation [CUMTVE_LIFETIME_FAIR_VALUE_ADJ] --> DSLink51.CUMTVE_LIFETIME_FAIR_VALUE_ADJ
+derivation [CUMTVE_LIFETIME_PURCHASE_IMPRS] --> DSLink51.CUMTVE_LIFETIME_PURCHASE_IMPRS
+derivation [BASEL_PORTFOLIO_ID] --> DSLink51.BASEL_PORTFOLIO_ID
+derivation [LOCAL_PRODUCT_ID] --> DSLink51.LOCAL_PRODUCT_ID
+derivation [AFFILIATE_CODE] --> DSLink51.AFFILIATE_CODE
+derivation [BUSINESS_UNIT] --> DSLink51.BUSINESS_UNIT
+derivation [OPERATING_UNIT] --> DSLink51.OPERATING_UNIT
+derivation [GLOBAL_ORGANIZATION_CODE] --> DSLink51.GLOBAL_ORGANIZATION_CODE
+derivation [BASEL_PRODUCT] --> DSLink51.BASEL_PRODUCT
+derivation [MANAGED_SEGMENT_ID] --> DSLink51.MANAGED_SEGMENT_ID
+derivation [PMAC_PORTFOLIO_ID] --> DSLink51.PMAC_PORTFOLIO_ID
+derivation [ENTERPRISE_STANDARD_PRODUCT_ID] --> DSLink51.ENTERPRISE_STANDARD_PRODUCT_ID
+derivation [MANAGED_GEOGRAPHY] --> DSLink51.MANAGED_GEOGRAPHY
+derivation [REQUESTED_PRODUCT_TYPE] --> DSLink51.REQUESTED_PRODUCT_TYPE
+derivation [LOCAL_DELQ_BUCKET_MONTH_END] --> DSLink51.LOCAL_DELQ_BUCKET_MONTH_END
+derivation [DELQ_STRING_24_MTH_MONTH_END] --> DSLink51.DELQ_STRING_24_MTH_MONTH_END
+derivation [DELQ_BAND_NORMALIZED_MONTH_END] --> DSLink51.DELQ_BAND_NORMALIZED_MONTH_END
+derivation [DELQ_BAND_NORM_BASIS_MOED] --> DSLink51.DELQ_BAND_NORM_BASIS_MOED
+derivation [DELINQUENT_AMOUNT_CAPITALIZED] --> DSLink51.DELINQUENT_AMOUNT_CAPITALIZED
+derivation [ACCT_60_DPD_LAST_THREE_YEARS] --> DSLink51.ACCT_60_DPD_LAST_THREE_YEARS
+derivation [DELINQUENCY_FLAG] --> DSLink51.DELINQUENCY_FLAG
+derivation [DAYS_PAST_DUE_MONTH_END] --> DSLink51.DAYS_PAST_DUE_MONTH_END
+derivation [DELINQUENCY_START_DATE] --> DSLink51.DELINQUENCY_START_DATE
+derivation [DELINQUENCY_END_DATE] --> DSLink51.DELINQUENCY_END_DATE
+derivation [DELINQUENCY_DURATION] --> DSLink51.DELINQUENCY_DURATION
+derivation [EVER_90_DPD_PAST_12_MONTHS] --> DSLink51.EVER_90_DPD_PAST_12_MONTHS
+derivation [DEFICIENCY_BAL_COLLN_OPTION] --> DSLink51.DEFICIENCY_BAL_COLLN_OPTION
+derivation [DEFICIENCY_BAL_COLLN_STATUS] --> DSLink51.DEFICIENCY_BAL_COLLN_STATUS
+derivation [ESCROW_AMT_BEFORE_MODN] --> DSLink51.ESCROW_AMT_BEFORE_MODN
+derivation [ESCROW_AMT_AFTER_MODIFICATION] --> DSLink51.ESCROW_AMT_AFTER_MODIFICATION
+derivation [CURRENTLY_IN_COLLECTIONS] --> DSLink51.CURRENTLY_IN_COLLECTIONS
+derivation [COLLECTIONS_ASSIGNMENT] --> DSLink51.COLLECTIONS_ASSIGNMENT
+derivation [COLLECTIONS_ENTERED_DATE] --> DSLink51.COLLECTIONS_ENTERED_DATE
+derivation [LAST_COLLECTION_EXIT_REASON] --> DSLink51.LAST_COLLECTION_EXIT_REASON
+derivation [FORECLOSURE_STATUS_CODE] --> DSLink51.FORECLOSURE_STATUS_CODE
+derivation [FORECLOSURE_REPOSSESS_START_DT] --> DSLink51.FORECLOSURE_REPOSSESS_START_DT
+derivation [OTHER_REAL_EST_OWNED_STATUS_DT] --> DSLink51.OTHER_REAL_EST_OWNED_STATUS_DT
+derivation [SHORT_SALE_AMOUNT] --> DSLink51.SHORT_SALE_AMOUNT
+derivation [FORECLOSURE_SALE_DATE] --> DSLink51.FORECLOSURE_SALE_DATE
+derivation [FORECLOSURE_REFERRAL_DATE] --> DSLink51.FORECLOSURE_REFERRAL_DATE
+derivation [FORECLOSURE_SUSPENDED] --> DSLink51.FORECLOSURE_SUSPENDED
+derivation [REAL_ESTATE_OWNED_CODE] --> DSLink51.REAL_ESTATE_OWNED_CODE
+derivation [SALES_PRICE_OF_PROPERTY] --> DSLink51.SALES_PRICE_OF_PROPERTY
+derivation [OREO_PROPERTY_SOLD_DISPOSE_DT] --> DSLink51.OREO_PROPERTY_SOLD_DISPOSE_DT
+derivation [BANKRUPTCY_CHARGE_OFF_DATE] --> DSLink51.BANKRUPTCY_CHARGE_OFF_DATE
+derivation [ACCOUNT_BANKRUPTCY_FILED_FLAG] --> DSLink51.ACCOUNT_BANKRUPTCY_FILED_FLAG
+derivation [BANKRUPTCY_CHAPTER] --> DSLink51.BANKRUPTCY_CHAPTER
+derivation [ACCOUNT_BANKRUPTCY_DATE] --> DSLink51.ACCOUNT_BANKRUPTCY_DATE
+derivation [FULL_CHARGE_OFF_DATE] --> DSLink51.FULL_CHARGE_OFF_DATE
+derivation [LAST_CHARGE_OFF_REASON_CODE] --> DSLink51.LAST_CHARGE_OFF_REASON_CODE
+derivation [POST_CHARGEOFF_SALE_PROCEEDS] --> DSLink51.POST_CHARGEOFF_SALE_PROCEEDS
+derivation [PRINCIPAL_WRITE_DOWN_FLAG] --> DSLink51.PRINCIPAL_WRITE_DOWN_FLAG
+derivation [LAST_WRITEDOWN_DATE] --> DSLink51.LAST_WRITEDOWN_DATE
+derivation [CHARGE_OFF_FLAG] --> DSLink51.CHARGE_OFF_FLAG
+derivation [LTD_PRIN_WRITE_OFFS_IMP_ALLL] --> DSLink51.LTD_PRIN_WRITE_OFFS_IMP_ALLL
+derivation [LTD_PRIN_WRITE_OFFS_NOIMP_ALLL] --> DSLink51.LTD_PRIN_WRITE_OFFS_NOIMP_ALLL
+derivation [LTD_PRIN_REV_IMPACTING_ALLL] --> DSLink51.LTD_PRIN_REV_IMPACTING_ALLL
+derivation [LTD_PRIN_REV_NOIMP_ALLL] --> DSLink51.LTD_PRIN_REV_NOIMP_ALLL
+derivation [LTD_INT_WRITE_OFFS_IMP_ALLL] --> DSLink51.LTD_INT_WRITE_OFFS_IMP_ALLL
+derivation [LTD_INT_WRITE_OFFS_NOIMP_ALLL] --> DSLink51.LTD_INT_WRITE_OFFS_NOIMP_ALLL
+derivation [LTD_FEE_WRITE_OFFS_IMP_ALLL] --> DSLink51.LTD_FEE_WRITE_OFFS_IMP_ALLL
+derivation [LTD_FEE_WRITE_OFFS_NOIMP_ALLL] --> DSLink51.LTD_FEE_WRITE_OFFS_NOIMP_ALLL
+derivation [TOTAL_CREDIT_LOSS] --> DSLink51.TOTAL_CREDIT_LOSS
+derivation [LOSS_MITN_EVER_ENROLLED_FLAG] --> DSLink51.LOSS_MITN_EVER_ENROLLED_FLAG
+derivation [LOSS_MITN_EVENT_FAS91_BAL] --> DSLink51.LOSS_MITN_EVENT_FAS91_BAL
+derivation [LOSS_MITN_EVT_LTD_FFIEC_WRTDWN] --> DSLink51.LOSS_MITN_EVT_LTD_FFIEC_WRTDWN
+derivation [GOVT_MODIFICATION_INDICATOR] --> DSLink51.GOVT_MODIFICATION_INDICATOR
+derivation [LOSS_MITN_PERFORMANCE_STATUS] --> DSLink51.LOSS_MITN_PERFORMANCE_STATUS
+derivation [TROUBLE_DEBT_RESTRUCTURE_FLAG] --> DSLink51.TROUBLE_DEBT_RESTRUCTURE_FLAG
+derivation [LOAN_MODIFICATION_TYPE] --> DSLink51.LOAN_MODIFICATION_TYPE
+derivation [LOSS_MITN_REPAY_PLN_PERFM_STAT] --> DSLink51.LOSS_MITN_REPAY_PLN_PERFM_STAT
+derivation [LOSS_MITN_INT_TYPE_CONV_DURN] --> DSLink51.LOSS_MITN_INT_TYPE_CONV_DURN
+derivation [LAST_SETTLEMENT_NEGOTIATED_AMT] --> DSLink51.LAST_SETTLEMENT_NEGOTIATED_AMT
+derivation [REPAYMENT_PLAN_START_DATE] --> DSLink51.REPAYMENT_PLAN_START_DATE
+derivation [TERM_MODIFICATION_FLAG] --> DSLink51.TERM_MODIFICATION_FLAG
+derivation [REAGE_DATE] --> DSLink51.REAGE_DATE
+derivation [LAST_WORKOUT_TYPE_C_OR_E] --> DSLink51.LAST_WORKOUT_TYPE_C_OR_E
+derivation [TROUBLED_DEBT_RESTRUCTURE_DATE] --> DSLink51.TROUBLED_DEBT_RESTRUCTURE_DATE
+derivation [LOAN_MODIFICATION_FLAG] --> DSLink51.LOAN_MODIFICATION_FLAG
+derivation [LOAN_MODIFICATION_DATE] --> DSLink51.LOAN_MODIFICATION_DATE
+derivation [LOAN_MODIFICATION_FDIC_TYPE] --> DSLink51.LOAN_MODIFICATION_FDIC_TYPE
+derivation [PRINCIPAL_FORGIVENESS_AMOUNT] --> DSLink51.PRINCIPAL_FORGIVENESS_AMOUNT
+derivation [OTHER_MODN_ACTION_TYPE] --> DSLink51.OTHER_MODN_ACTION_TYPE
+derivation [REMAINING_TERM_BEFORE_MODN] --> DSLink51.REMAINING_TERM_BEFORE_MODN
+derivation [REMAINING_TERM_AFTER_MODN] --> DSLink51.REMAINING_TERM_AFTER_MODN
+derivation [ALT_HOME_LIQN_LOSS_MITN_DT] --> DSLink51.ALT_HOME_LIQN_LOSS_MITN_DT
+derivation [ALT_HOME_RETN_LOSS_MITN_DT] --> DSLink51.ALT_HOME_RETN_LOSS_MITN_DT
+derivation [LOAN_MODIFICATION_EVENT_FLAG] --> DSLink51.LOAN_MODIFICATION_EVENT_FLAG
+derivation [ARM_INITIAL_RATE_CAP] --> DSLink51.ARM_INITIAL_RATE_CAP
+derivation [ARM_INITIAL_PAYMENT_ADJ_PERIOD] --> DSLink51.ARM_INITIAL_PAYMENT_ADJ_PERIOD
+derivation [ARM_INITIAL_PAYMENT_ADJ_CAP] --> DSLink51.ARM_INITIAL_PAYMENT_ADJ_CAP
+derivation [ORIGINAL_MONTHLY_PAYMENT] --> DSLink51.ORIGINAL_MONTHLY_PAYMENT
+derivation [INTEREST_RATE_MARGIN_TYPE] --> DSLink51.INTEREST_RATE_MARGIN_TYPE
+derivation [ARM_INITIAL_RATE] --> DSLink51.ARM_INITIAL_RATE
+derivation [ARM_INITIAL_RATE_PERIOD] --> DSLink51.ARM_INITIAL_RATE_PERIOD
+derivation [ARM_PAYMENT_RESET_FREQUENCY] --> DSLink51.ARM_PAYMENT_RESET_FREQUENCY
+derivation [NEGATIVE_AMORT_PERCENT_LMT] --> DSLink51.NEGATIVE_AMORT_PERCENT_LMT
+derivation [ARM_PERIODIC_RATE_CAP] --> DSLink51.ARM_PERIODIC_RATE_CAP
+derivation [ARM_PERIODIC_RATE_FLOOR] --> DSLink51.ARM_PERIODIC_RATE_FLOOR
+derivation [ARM_LIFETIME_RATE_FLOOR] --> DSLink51.ARM_LIFETIME_RATE_FLOOR
+derivation [ARM_PERIODIC_PAYMENT_CAP] --> DSLink51.ARM_PERIODIC_PAYMENT_CAP
+derivation [ARM_PERIODIC_PAY_FLOOR] --> DSLink51.ARM_PERIODIC_PAY_FLOOR
+derivation [OPTION_ARM_IN_REPORTING_MONTH] --> DSLink51.OPTION_ARM_IN_REPORTING_MONTH
+derivation [INTEREST_RATE_FROZEN_FLAG] --> DSLink51.INTEREST_RATE_FROZEN_FLAG
+derivation [ARM_MARGIN_AT_ORIGIN] --> DSLink51.ARM_MARGIN_AT_ORIGIN
+derivation [INTEREST_ONLY_AT_ORIGIN] --> DSLink51.INTEREST_ONLY_AT_ORIGIN
+derivation [OPTION_ARM_FLAG] --> DSLink51.OPTION_ARM_FLAG
+derivation [INTEREST_TYPE_AT_ORIGIN] --> DSLink51.INTEREST_TYPE_AT_ORIGIN
+derivation [INTEREST_TYPE_IN_CURRENT_MONTH] --> DSLink51.INTEREST_TYPE_IN_CURRENT_MONTH
+derivation [ORIGINAL_INTEREST_RATE] --> DSLink51.ORIGINAL_INTEREST_RATE
+derivation [INTEREST_RATE_INDEX_MONTH_END] --> DSLink51.INTEREST_RATE_INDEX_MONTH_END
+derivation [INTEREST_RATE_SPREAD_MONTH_END] --> DSLink51.INTEREST_RATE_SPREAD_MONTH_END
+derivation [RT_RESET_PERIODICITY_INTVL_ID] --> DSLink51.RT_RESET_PERIODICITY_INTVL_ID
+derivation [INTEREST_RATE_TYPE] --> DSLink51.INTEREST_RATE_TYPE
+derivation [INT_RATE_EFFECTIVE_DT_MOED] --> DSLink51.INT_RATE_EFFECTIVE_DT_MOED
+derivation [INT_RATE_EXP_DT_MOED] --> DSLink51.INT_RATE_EXP_DT_MOED
+derivation [PROMO_INTEREST_RATE_ELIGIBLE] --> DSLink51.PROMO_INTEREST_RATE_ELIGIBLE
+derivation [INTEREST_RATE_MONTH_END] --> DSLink51.INTEREST_RATE_MONTH_END
+derivation [INT_RATE_ACTIVE_FLAG_MONTH_END] --> DSLink51.INT_RATE_ACTIVE_FLAG_MONTH_END
+derivation [INT_RATE_BEFORE_MODIFICATION] --> DSLink51.INT_RATE_BEFORE_MODIFICATION
+derivation [INT_RATE_AFTER_MODIFICATION] --> DSLink51.INT_RATE_AFTER_MODIFICATION
+derivation [ORIGINAL_ACCOUNT_NUMBER_1] --> DSLink51.ORIGINAL_ACCOUNT_NUMBER_1
+derivation [ORIGINAL_ACCOUNT_NUMBER_2] --> DSLink51.ORIGINAL_ACCOUNT_NUMBER_2
+derivation [ORIGINAL_ACCOUNT_NUMBER_3] --> DSLink51.ORIGINAL_ACCOUNT_NUMBER_3
+derivation [ORIGINAL_ACCOUNT_NUMBER_4] --> DSLink51.ORIGINAL_ACCOUNT_NUMBER_4
+derivation [ORIGINAL_ACCOUNT_NUMBER_5] --> DSLink51.ORIGINAL_ACCOUNT_NUMBER_5
+derivation [ORIGINAL_ACCOUNT_NUMBER_6] --> DSLink51.ORIGINAL_ACCOUNT_NUMBER_6
+derivation [ORIGINAL_ACCOUNT_NUMBER_7] --> DSLink51.ORIGINAL_ACCOUNT_NUMBER_7
+derivation [ORIGINAL_ACCOUNT_NUMBER_8] --> DSLink51.ORIGINAL_ACCOUNT_NUMBER_8
+derivation [ABOVE_CUT_OFF_SCORE_FLAG] --> DSLink51.ABOVE_CUT_OFF_SCORE_FLAG
+derivation [APPLICATION_OVERRIDE_FLAG] --> DSLink51.APPLICATION_OVERRIDE_FLAG
+derivation [APPLICATION_OVERRIDE_REASON] --> DSLink51.APPLICATION_OVERRIDE_REASON
+derivation [APP_OVERRIDE_LINE_LOAN_AMT] --> DSLink51.APP_OVERRIDE_LINE_LOAN_AMT
+derivation [ORIGINAL_LOCAL_SCORE] --> DSLink51.ORIGINAL_LOCAL_SCORE
+derivation [ASSET_VERIFICATION_TYPE] --> DSLink51.ASSET_VERIFICATION_TYPE
+derivation [BOOKING_PRICING_EXCEPTION_FLAG] --> DSLink51.BOOKING_PRICING_EXCEPTION_FLAG
+derivation [BOOKING_PROCESS_EXCEPTION_FLAG] --> DSLink51.BOOKING_PROCESS_EXCEPTION_FLAG
+derivation [DBT_INC_BACK_END_AT_ORIGIN] --> DSLink51.DBT_INC_BACK_END_AT_ORIGIN
+derivation [DBT_INC_FRONT_END_AT_ORIGIN] --> DSLink51.DBT_INC_FRONT_END_AT_ORIGIN
+derivation [LOAN_SOURCE_OR_CHANNEL] --> DSLink51.LOAN_SOURCE_OR_CHANNEL
+derivation [LOAN_APPROVER_ID] --> DSLink51.LOAN_APPROVER_ID
+derivation [LOAN_REVIEWER_ID] --> DSLink51.LOAN_REVIEWER_ID
+derivation [BOOKING_EXCEPTION_REASON_CODE] --> DSLink51.BOOKING_EXCEPTION_REASON_CODE
+derivation [FIRST_APPLICATION_DATE] --> DSLink51.FIRST_APPLICATION_DATE
+derivation [LAST_APPLICATION_DATE] --> DSLink51.LAST_APPLICATION_DATE
+derivation [FIRST_APPROVAL_DATE] --> DSLink51.FIRST_APPROVAL_DATE
+derivation [FIRST_APPROVAL_TYPE] --> DSLink51.FIRST_APPROVAL_TYPE
+derivation [LAST_REAPPROVAL_TYPE] --> DSLink51.LAST_REAPPROVAL_TYPE
+derivation [LAST_APPROVAL_DATE] --> DSLink51.LAST_APPROVAL_DATE
+derivation [LAST_APPROVAL_ADJUDN_BASIS] --> DSLink51.LAST_APPROVAL_ADJUDN_BASIS
+derivation [CREDIT_ADJUDICATION_PROGRAM] --> DSLink51.CREDIT_ADJUDICATION_PROGRAM
+derivation [BASEL_SCORE_BAND] --> DSLink51.BASEL_SCORE_BAND
+derivation [ORIG_ACCT_INCOME_DOC_TYPE] --> DSLink51.ORIG_ACCT_INCOME_DOC_TYPE
+derivation [ORIG_ACCT_INCOME_DOC_TYPE2] --> DSLink51.ORIG_ACCT_INCOME_DOC_TYPE2
+derivation [CITIGROUP_STAFF_ACCT_IND] --> DSLink51.CITIGROUP_STAFF_ACCT_IND
+derivation [CITIGROUP_VIP_ACCT_IND] --> DSLink51.CITIGROUP_VIP_ACCT_IND
+derivation [NET_RECOVERY_AMOUNT] --> DSLink51.NET_RECOVERY_AMOUNT
+derivation [CREDIT_CLASS] --> DSLink51.CREDIT_CLASS
+derivation [GRACE_PERIOD_DAY_COUNT] --> DSLink51.GRACE_PERIOD_DAY_COUNT
+derivation [REPURCHASE_REQUEST_DATE] --> DSLink51.REPURCHASE_REQUEST_DATE
+derivation [LOAN_REPURCHASE_TYPE] --> DSLink51.LOAN_REPURCHASE_TYPE
+derivation [REPURCHASE_COMPLETION_DATE] --> DSLink51.REPURCHASE_COMPLETION_DATE
+derivation [NOTICE_OF_DEFAULT_DATE] --> DSLink51.NOTICE_OF_DEFAULT_DATE
+derivation [PREPMT_PENALTY_WAIVED_THIS_MON] --> DSLink51.PREPMT_PENALTY_WAIVED_THIS_MON
+derivation [PREPMT_PENALTY_WAIVED_AMOUNT] --> DSLink51.PREPMT_PENALTY_WAIVED_AMOUNT
+derivation [ARM_LAST_RESET_DATE] --> DSLink51.ARM_LAST_RESET_DATE
+derivation [PRIN_OR_INT_RECOURSE_FLAG] --> DSLink51.PRIN_OR_INT_RECOURSE_FLAG
+derivation [PRIN_OR_INT_RECOURSE_AMOUNT] --> DSLink51.PRIN_OR_INT_RECOURSE_AMOUNT
+derivation [PRIN_OR_INT_RECOURSE_ENTITY] --> DSLink51.PRIN_OR_INT_RECOURSE_ENTITY
+Excel written successfully..
+[main] 19:43:48,736 INFO  com.citi.gcg.ds.parser.DSParser.main(DSParser.java:148) - !!!! The END !!!!
