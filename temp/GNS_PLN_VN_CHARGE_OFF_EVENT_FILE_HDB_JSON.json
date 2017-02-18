@@ -1,0 +1,243 @@
+[
+  {
+    "jobName": "GNS_PLN_VN_CHARGE_OFF_EVENT_FILE_HDB",
+    "JobParameterNames": null,
+    "type": "Type-1",
+    "patternMap": {
+      "V348S0P1:TeradataConnectorPX": "1",
+      "V0S38:CTransformerStage": "1",
+      "V312S1:PxCopy": "2",
+      "V312S3:PxSequentialFile": "1",
+      "V349S0:PxDataSet": "1"
+    },
+    "teradataQuery": "SELECT\nTRIM(CAST(CAST(A.MIS_DT AS DATE  FORMAT \u0027YYYYMMDD\u0027) AS VARCHAR(8))) AS REPORTING_PERIOD,\nTRIM(CAST(A.CRD_ACCT_NBR AS VARCHAR(128))) AS ACCOUNT_NUMBER,\n(CASE WHEN NVL(TRIM(A.ACCT_BLK_CDE_1),\u0027XX\u0027)\u003d\u0027W\u0027 OR NVL(TRIM(A.ACCT_BLK_CDE_2),\u0027XX\u0027)\u003d\u0027W\u0027 THEN\n(CASE WHEN NVL(TRIM(A.ACCT_BLK_RSN_1),\u0027XX\u0027)\u003d\u002716\u0027 OR NVL(TRIM(A.ACCT_BLK_RSN_2),\u0027XX\u0027)\u003d\u002716\u0027 THEN \u00273\u0027 \nWHEN NVL(TRIM(A.ACCT_BLK_RSN_1),\u0027XX\u0027)\u003d\u002728\u0027 OR NVL(TRIM(A.ACCT_BLK_RSN_2),\u0027XX\u0027)\u003d\u002728\u0027 THEN \u00272\u0027 ELSE \u00271\u0027 END) ELSE \u0027\u0027 END) AS CHARGE_OFF_EVENT_REASON_CODE,\nCOALESCE(A.CHRG_OFF_DT,CAST(\u00279999-12-31\u0027 AS DATE FORMAT \u0027YYYY-MM-DD\u0027)) AS CHRG_OFF_DT\nFrom\n(SELECT A.CRD_ACCT_NBR,\nA.ACCT_ORG_CDE,\nA.CLNT_NBR,\nC.MIS_DT,\nB.LOB_CDE,\nC.ACCT_BLK_CDE_1,\nC.ACCT_BLK_CDE_2,\nC.ACCT_BLK_RSN_1,\nC.ACCT_BLK_RSN_2,\nC.CHRG_OFF_DT\nFROM P_VN_HDBRISK_V.INT_CRD_PORTFOLIO_MASTER_RH A, P_VN_HDBRISK_V.INT_ACCT_ENCRYPT_XREF_DTL_RH B, P_VN_HDBRISK_V.INT_CRD_PORTFOLIO_SNAP_M_RH C\nWHERE A.CRD_ACCT_NBR \u003d B.ENCRYPT_VAL_TXT\nAND A.ACCT_ORG_CDE \u003d B.ORG_CDE\nAND A.CRD_ACCT_NBR \u003d C.CRD_ACCT_NBR\nAND A.ACCT_ORG_CDE \u003d C.ACCT_ORG_CDE\nAND ( B.LOB_CDE LIKE \u0027%RC%\u0027 ) \nAND A.REPORTING_PERIOD\u003d\u0027#V_MISDATE#\u0027\nAND C.MIS_DT\u003dCAST(\u0027#V_MISDATE#\u0027 AS DATE FORMAT \u0027YYYYMMDD\u0027) ) A",
+    "transformationStages": {
+      "V0S38P2": {
+        "recordIdentifier": "V0S38P2",
+        "constraintExpr": "MonthFromDate(StringToDate(V_MISDATE,\"%yyyy%mm%dd\")) \u003dMonthFromDate(Tfm_Standardize.CHRG_OFF_DT) And YearFromDate(StringToDate(V_MISDATE,\"%yyyy%mm%dd\")) \u003dYearFromDate(Tfm_Standardize.CHRG_OFF_DT)",
+        "outputColumnInfo": {
+          "V0S38P2": [
+            {
+              "name": "REPORTING_PERIOD",
+              "type": "int",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "Tfm_Standardize.REPORTING_PERIOD [1,6]",
+              "sourceColumn": "Tfm_Standardize.REPORTING_PERIOD"
+            },
+            {
+              "name": "ACCOUNT_NUMBER",
+              "type": "string",
+              "desc": "",
+              "format": null,
+              "derivation": "Tfm_Standardize.ACCOUNT_NUMBER",
+              "sourceColumn": "Tfm_Standardize.ACCOUNT_NUMBER"
+            },
+            {
+              "name": "CHARGE_OFF_EVENT_DATE",
+              "type": "string",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "If IsNull(Tfm_Standardize.CHRG_OFF_DT) then \u0027\u0027 else UpCase(DateToString(Tfm_Standardize.CHRG_OFF_DT,\u0027%dd%mmm%yyyy\u0027))",
+              "sourceColumn": "Tfm_Standardize.CHRG_OFF_DT"
+            },
+            {
+              "name": "CHARGE_OFF_EVENT_TYPE",
+              "type": "string",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then \u00271\u0027 Else \u0027\u0027",
+              "sourceColumn": "Tfm_Standardize.CHRG_OFF_DT"
+            },
+            {
+              "name": "CHARGE_OFF_EVENT_PRINCIPAL",
+              "type": "string",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "\u00270.0\u0027",
+              "sourceColumn": ""
+            },
+            {
+              "name": "CHARGE_OFF_EVENT_INTEREST",
+              "type": "string",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "\u00270.0\u0027",
+              "sourceColumn": ""
+            },
+            {
+              "name": "CHARGE_OFF_EVENT_FEE",
+              "type": "string",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "\u00270.0\u0027",
+              "sourceColumn": ""
+            },
+            {
+              "name": "CHARGE_OFF_EVENT_TXN_TYPE",
+              "type": "string",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then \u00272\u0027 Else \u0027\u0027",
+              "sourceColumn": "Tfm_Standardize.CHRG_OFF_DT"
+            },
+            {
+              "name": "CHARGE_OFF_EVENT_REASON_CODE",
+              "type": "string",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "If IsNull(Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE) Then \u0027\u0027 Else  Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE",
+              "sourceColumn": "Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE"
+            },
+            {
+              "name": "CHARGE_OFF_EVENT_INT_AND_FEE",
+              "type": "string",
+              "desc": "\u003cnone\u003e",
+              "format": null,
+              "derivation": "\u00270.0\u0027",
+              "sourceColumn": ""
+            },
+            {
+              "name": "COUNTRY_CD",
+              "type": "string",
+              "desc": "",
+              "format": null,
+              "derivation": "PLN_Parameter_Set.ISO_CNTRY_CD",
+              "sourceColumn": ""
+            }
+          ]
+        },
+        "trxGenCode": "//\n// Generated file to implement the V0S38_GNS_PLN_VN_CHARGE_OFF_EVENT_FILE_HDB_NullHandling transform operator.\n//\n\n// define our input/output link names\ninputname 0 Tfm_Standardize;\noutputname 0 ToCpy;\n\nglobal {\n\t// Job parameter declaration\n\tustring V_MISDATE;\n\tustring TRANSFORMER_PLN_Parameter_Set_ISO_CNTRY_CD;\n}\n\ninitialize {\n\t// define our control variables\n\tint8 RowRejected0;\n\tint8 NullSetVar0;\n\n\t// declare our intermediate variables for this section\n\tstring InterVar0_0;\n\tstring InterVar0_1;\n\tstring InterVar0_2;\n\tustring InterVar0_3;\n\tustring InterVar0_4;\n\tstring InterVar0_5;\n\tustring InterVar0_6;\n\n\t// initialise constant values which require conversion\n\tInterVar0_0 \u003d \"%yyyy%mm%dd\";\n\tInterVar0_1 \u003d \"\";\n\tInterVar0_2 \u003d \"%dd%mmm%yyyy\";\n\tInterVar0_3 \u003d \"1\";\n\tInterVar0_4 \u003d \"\";\n\tInterVar0_5 \u003d \"0.0\";\n\tInterVar0_6 \u003d \"2\";\n}\n\nmainloop {\n\n\t// declare our intermediate variables for this section\n\tustring InterVar0_7;\n\n\t// initialise the rejected row variable\n\tRowRejected0 \u003d 1;\n\n\t// evaluate constraint and columns for link: ToCpy\n\tif (((month_from_date(date_from_ustring(V_MISDATE , InterVar0_0)) \u003d\u003d month_from_date(Tfm_Standardize.CHRG_OFF_DT)) \u0026\u0026 (year_from_date(date_from_ustring(V_MISDATE , InterVar0_0)) \u003d\u003d year_from_date(Tfm_Standardize.CHRG_OFF_DT))))\n\t{\n\t\tToCpy.REPORTING_PERIOD \u003d substring_1(Tfm_Standardize.REPORTING_PERIOD , 1 , 6);\n\t\tToCpy.ACCOUNT_NUMBER \u003d Tfm_Standardize.ACCOUNT_NUMBER;\n\t\tif (null(Tfm_Standardize.CHRG_OFF_DT)) {\n\t\t\tToCpy.CHARGE_OFF_EVENT_DATE \u003d InterVar0_1;\n\t\t} else {\n\t\t\tToCpy.CHARGE_OFF_EVENT_DATE \u003d upper_case(string_from_date(Tfm_Standardize.CHRG_OFF_DT , InterVar0_2));\n\t\t}\n\t\t//;\n\t\tif (notnull(Tfm_Standardize.CHRG_OFF_DT)) {\n\t\t\tToCpy.CHARGE_OFF_EVENT_TYPE \u003d InterVar0_3;\n\t\t} else {\n\t\t\tToCpy.CHARGE_OFF_EVENT_TYPE \u003d InterVar0_4;\n\t\t}\n\t\t//;\n\t\tToCpy.CHARGE_OFF_EVENT_PRINCIPAL \u003d InterVar0_5;\n\t\tToCpy.CHARGE_OFF_EVENT_INTEREST \u003d InterVar0_5;\n\t\tToCpy.CHARGE_OFF_EVENT_FEE \u003d InterVar0_5;\n\t\tif (notnull(Tfm_Standardize.CHRG_OFF_DT)) {\n\t\t\tToCpy.CHARGE_OFF_EVENT_TXN_TYPE \u003d InterVar0_6;\n\t\t} else {\n\t\t\tToCpy.CHARGE_OFF_EVENT_TXN_TYPE \u003d InterVar0_4;\n\t\t}\n\t\t//;\n\t\tif (null(Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE)) {\n\t\t\tToCpy.CHARGE_OFF_EVENT_REASON_CODE \u003d InterVar0_4;\n\t\t} else {\n\t\t\tInterVar0_7 \u003d Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE;\n\t\t\tToCpy.CHARGE_OFF_EVENT_REASON_CODE \u003d InterVar0_7;\n\t\t}\n\t\t//;\n\t\tToCpy.CHARGE_OFF_EVENT_INT_AND_FEE \u003d InterVar0_5;\n\t\tToCpy.COUNTRY_CD \u003d TRANSFORMER_PLN_Parameter_Set_ISO_CNTRY_CD;\n\t\twriterecord 0;\n\t\tRowRejected0 \u003d 0;\n\t}\n}\n\nfinish {\n}\n",
+        "sourceColumns": "Tfm_Standardize.CHRG_OFF_DT"
+      }
+    },
+    "outputColumnInfo": {
+      "V0S38P2": [
+        {
+          "name": "REPORTING_PERIOD",
+          "type": "int",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "Tfm_Standardize.REPORTING_PERIOD [1,6]",
+          "sourceColumn": "Tfm_Standardize.REPORTING_PERIOD"
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "type": "string",
+          "desc": "",
+          "format": null,
+          "derivation": "Tfm_Standardize.ACCOUNT_NUMBER",
+          "sourceColumn": "Tfm_Standardize.ACCOUNT_NUMBER"
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_DATE",
+          "type": "string",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "If IsNull(Tfm_Standardize.CHRG_OFF_DT) then \u0027\u0027 else UpCase(DateToString(Tfm_Standardize.CHRG_OFF_DT,\u0027%dd%mmm%yyyy\u0027))",
+          "sourceColumn": "Tfm_Standardize.CHRG_OFF_DT"
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_TYPE",
+          "type": "string",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then \u00271\u0027 Else \u0027\u0027",
+          "sourceColumn": "Tfm_Standardize.CHRG_OFF_DT"
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_PRINCIPAL",
+          "type": "string",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "\u00270.0\u0027",
+          "sourceColumn": ""
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_INTEREST",
+          "type": "string",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "\u00270.0\u0027",
+          "sourceColumn": ""
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_FEE",
+          "type": "string",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "\u00270.0\u0027",
+          "sourceColumn": ""
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_TXN_TYPE",
+          "type": "string",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then \u00272\u0027 Else \u0027\u0027",
+          "sourceColumn": "Tfm_Standardize.CHRG_OFF_DT"
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_REASON_CODE",
+          "type": "string",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "If IsNull(Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE) Then \u0027\u0027 Else  Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE",
+          "sourceColumn": "Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE"
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_INT_AND_FEE",
+          "type": "string",
+          "desc": "\u003cnone\u003e",
+          "format": null,
+          "derivation": "\u00270.0\u0027",
+          "sourceColumn": ""
+        },
+        {
+          "name": "COUNTRY_CD",
+          "type": "string",
+          "desc": "",
+          "format": null,
+          "derivation": "PLN_Parameter_Set.ISO_CNTRY_CD",
+          "sourceColumn": ""
+        }
+      ]
+    },
+    "inputColumnInfo": {
+      "V348S0P1": [
+        {
+          "name": "REPORTING_PERIOD",
+          "type": "string",
+          "desc": "",
+          "format": null,
+          "derivation": "",
+          "sourceColumn": ""
+        },
+        {
+          "name": "ACCOUNT_NUMBER",
+          "type": "string",
+          "desc": "",
+          "format": null,
+          "derivation": "",
+          "sourceColumn": ""
+        },
+        {
+          "name": "CHARGE_OFF_EVENT_REASON_CODE",
+          "type": "string",
+          "desc": "",
+          "format": null,
+          "derivation": "",
+          "sourceColumn": ""
+        },
+        {
+          "name": "CHRG_OFF_DT",
+          "type": "date",
+          "desc": "",
+          "format": null,
+          "derivation": "",
+          "sourceColumn": ""
+        }
+      ]
+    }
+  }
+]
