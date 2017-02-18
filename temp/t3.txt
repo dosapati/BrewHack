@@ -1,0 +1,792 @@
+//
+// Generated file to implement the V358S3_ID_GNS_MTG_O2_ACCOUNT_FILE_TFM_Tfm_To_Ds_Acct_File transform operator.
+//
+
+// define our input/output link names
+inputname 0 Lnk_Lkp_To_Jn;
+outputname 0 Lnk_Ds_To_Cpy1;
+outputname 1 Lnk_Cols_To_RemDup;
+outputname 2 DSLink173;
+
+initialize {
+	// define our control variables
+	int8 RowRejected0;
+	int8 NullSetVar0;
+
+	// declare our intermediate variables for this section
+	ustring InterVar0_0;
+	ustring InterVar0_1;
+	ustring InterVar0_2;
+	ustring InterVar0_3;
+	ustring InterVar0_4;
+	ustring InterVar0_5;
+	ustring InterVar0_6;
+	ustring InterVar0_7;
+	ustring InterVar0_8;
+	ustring InterVar0_9;
+	ustring InterVar0_10;
+	ustring InterVar0_11;
+	string InterVar0_12;
+	string InterVar0_13;
+	string InterVar0_14;
+	ustring InterVar0_17;
+	ustring InterVar0_18;
+	ustring InterVar0_19;
+	ustring InterVar0_20;
+	ustring InterVar0_21;
+	ustring InterVar0_22;
+	ustring InterVar0_23;
+	ustring InterVar0_24;
+	ustring InterVar0_25;
+	ustring InterVar0_26;
+	ustring InterVar0_27;
+	ustring InterVar0_28;
+	ustring InterVar0_29;
+	ustring InterVar0_30;
+
+	// initialise constant values which require conversion
+	InterVar0_0 = &quot;2&quot;;
+	InterVar0_1 = &quot;&quot;;
+	InterVar0_2 = &quot;1&quot;;
+	InterVar0_3 = &quot;Staff Benefit&quot;;
+	InterVar0_4 = &quot;0.00&quot;;
+	InterVar0_5 = &quot;3&quot;;
+	InterVar0_6 = &quot;N&quot;;
+	InterVar0_7 = &quot;7&quot;;
+	InterVar0_8 = &quot;6&quot;;
+	InterVar0_9 = &quot;02JAN1900&quot;;
+	InterVar0_10 = &quot;IDR&quot;;
+	InterVar0_11 = &quot;NON_RV_LMT&quot;;
+	InterVar0_12 = &quot;suppress_zero&quot;;
+	InterVar0_13 = &quot;.&quot;;
+	InterVar0_14 = &quot;.00&quot;;
+	InterVar0_17 = &quot;4&quot;;
+	InterVar0_18 = &quot;ALS&quot;;
+	InterVar0_19 = &quot;A&quot;;
+	InterVar0_20 = &quot;Y&quot;;
+	InterVar0_21 = &quot;0&quot;;
+	InterVar0_22 = &quot;26&quot;;
+	InterVar0_23 = &quot;1611180&quot;;
+	InterVar0_24 = &quot;ID&quot;;
+	InterVar0_25 = 0;
+	InterVar0_26 = &quot;00&quot;;
+	InterVar0_27 = &quot;10007&quot;;
+	InterVar0_28 = &quot;19&quot;;
+	InterVar0_29 = &quot;5&quot;;
+	InterVar0_30 = &quot;X&quot;;
+}
+
+mainloop {
+
+	// declare our intermediate variables for this section
+	ustring InterVar0_15;
+	ustring InterVar0_16;
+
+	// initialise the rejected row variable
+	RowRejected0 = 1;
+
+	// evaluate columns (no constraints) for link: Lnk_Ds_To_Cpy1
+	Lnk_Ds_To_Cpy1.REPORTING_PERIOD = Lnk_Lkp_To_Jn.REPORTING_PERIOD;
+	Lnk_Ds_To_Cpy1.ACCOUNT_NUMBER = Lnk_Lkp_To_Jn.ACCOUNT_NUMBER;
+	Lnk_Ds_To_Cpy1.ARRGMNT_BUSINESS_INTENT_TYPE = InterVar0_0;
+	if (null(Lnk_Lkp_To_Jn.ACCOUNT_OPEN_DATE)) {
+		Lnk_Ds_To_Cpy1.ACCOUNT_OPEN_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ACCOUNT_OPEN_DATE = Lnk_Lkp_To_Jn.ACCOUNT_OPEN_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.SOLD_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SOLD_STATUS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SKIP_PAYMENT_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SKIP_PAYMENT_ELIGIBLE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SKIP_PAYMENT_COUNT_LTD = InterVar0_1;
+	Lnk_Ds_To_Cpy1.NEGATIVE_AMORTIZATION_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CREDIT_TEST_ACCOUNT_FLAG = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.BOOK_OF_BUSINESS)) {
+		Lnk_Ds_To_Cpy1.BOOK_OF_BUSINESS = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.BOOK_OF_BUSINESS = Lnk_Lkp_To_Jn.BOOK_OF_BUSINESS;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.ORIGINATING_BRANCH)) {
+		Lnk_Ds_To_Cpy1.ORIGINATING_BRANCH = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ORIGINATING_BRANCH = Lnk_Lkp_To_Jn.ORIGINATING_BRANCH;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.DATE_OF_LAST_INTEREST_REVERSAL)) {
+		Lnk_Ds_To_Cpy1.DATE_OF_LAST_INTEREST_REVERSAL = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.DATE_OF_LAST_INTEREST_REVERSAL = Lnk_Lkp_To_Jn.DATE_OF_LAST_INTEREST_REVERSAL;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.LOCAL_BLOCK_CODE_2 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PAYMENT_RETURNED_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LIEN_INDICATOR = InterVar0_2;
+	Lnk_Ds_To_Cpy1.NUMBER_OF_BORROWERS = InterVar0_2;
+	Lnk_Ds_To_Cpy1.SENIOR_LIEN_PRODUCT_AT_ORIGIN = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SILENT_SECOND_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LAST_PREPMT_EARLY_PAYOUT_RSN = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.ORIGINAL_AMORTIZATION_PERIOD)) {
+		Lnk_Ds_To_Cpy1.ORIGINAL_AMORTIZATION_PERIOD = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ORIGINAL_AMORTIZATION_PERIOD = Lnk_Lkp_To_Jn.ORIGINAL_AMORTIZATION_PERIOD;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.REPAYMENT_TYPE_AT_ORIGIN = InterVar0_0;
+	if (null(Lnk_Lkp_To_Jn.REPAYMENT_TERM)) {
+		Lnk_Ds_To_Cpy1.REPAYMENT_TERM = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.REPAYMENT_TERM = Lnk_Lkp_To_Jn.REPAYMENT_TERM;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.LOCAL_PROGRAM_DESCRIPTION = InterVar0_3;
+	if (null(Lnk_Lkp_To_Jn.LAST_FULL_PAYMENT_DATE)) {
+		Lnk_Ds_To_Cpy1.LAST_FULL_PAYMENT_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.LAST_FULL_PAYMENT_DATE = Lnk_Lkp_To_Jn.LAST_FULL_PAYMENT_DATE;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.LAST_PAYMENT_DUE_DATE)) {
+		Lnk_Ds_To_Cpy1.LAST_PAYMENT_DUE_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.LAST_PAYMENT_DUE_DATE = Lnk_Lkp_To_Jn.LAST_PAYMENT_DUE_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.LOAN_PARTICIPATION_RATE = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CITI_EMPLOYEE_LOAN_ORIGIN_TYPE = InterVar0_2;
+	Lnk_Ds_To_Cpy1.BLD_UNDER_CONSTRUCTION_TYPE = InterVar0_5;
+	Lnk_Ds_To_Cpy1.CPF_LIEN_POSITION = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.LAST_PAYMENT_DATE)) {
+		Lnk_Ds_To_Cpy1.LAST_PAYMENT_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.LAST_PAYMENT_DATE = Lnk_Lkp_To_Jn.LAST_PAYMENT_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.FIRST_NON_ACCRUAL_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SECURITIZED_FLAG = InterVar0_6;
+	if (null(Lnk_Lkp_To_Jn.FIRST_PAYMENT_DATE)) {
+		Lnk_Ds_To_Cpy1.FIRST_PAYMENT_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.FIRST_PAYMENT_DATE = Lnk_Lkp_To_Jn.FIRST_PAYMENT_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.BALLOON_TERM = InterVar0_1;
+	Lnk_Ds_To_Cpy1.BUYDOWN_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ARM_LIFETIME_RATE_CAP = InterVar0_4;
+	Lnk_Ds_To_Cpy1.NEGATIVE_AMORTIZATION_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.PRE_PAYMENT_PENALTY_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PRE_PAYMENT_PENALTY_TERM = InterVar0_1;
+	Lnk_Ds_To_Cpy1.MORTGAGE_INVESTOR_TYPE = InterVar0_7;
+	Lnk_Ds_To_Cpy1.SERVICER_ADVANCES = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.NEXT_PAYMENT_DUE_DATE)) {
+		Lnk_Ds_To_Cpy1.NEXT_PAYMENT_DUE_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.NEXT_PAYMENT_DUE_DATE = Lnk_Lkp_To_Jn.NEXT_PAYMENT_DUE_DATE;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.REMAINING_TERM)) {
+		Lnk_Ds_To_Cpy1.REMAINING_TERM = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.REMAINING_TERM = Lnk_Lkp_To_Jn.REMAINING_TERM;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.PAID_IN_FULL_CODING)) {
+		Lnk_Ds_To_Cpy1.PAID_IN_FULL_CODING = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.PAID_IN_FULL_CODING = Lnk_Lkp_To_Jn.PAID_IN_FULL_CODING;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.REPURCHASE_REQ_PUT_BACK_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_REPURCHASE_PUT_BACK_TYPE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REFRESHED_DBT_INC_RATIO_BCKEND = InterVar0_4;
+	Lnk_Ds_To_Cpy1.REFRESHED_DBT_INC_RATIO_FRNEND = InterVar0_4;
+	Lnk_Ds_To_Cpy1.HOME_AFFORDABLE_REFINANCE_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.HAMP_LOAN_NUMBER = InterVar0_1;
+	Lnk_Ds_To_Cpy1.STEP_MODIFICATION_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REPORTED_AS_BANK_OWNED_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ACCOUNTING_BASIS = InterVar0_8;
+	Lnk_Ds_To_Cpy1.HOME_EQUITY_LIQUIDATION_STATUS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.FIRST_MORT_SERVICED_IN_HOUSE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CREDIT_LINE_FROZEN_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOCKOUT_FEATURE_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.LOAN_DRAW_END_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_MODN_INT_REDUCTION = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_EXTENSION_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ACQUISITION_DATE = InterVar0_9;
+	Lnk_Ds_To_Cpy1.JOINT_ACCOUNT = InterVar0_6;
+	Lnk_Ds_To_Cpy1.LINE_FROZEN_CURR_MONTH_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.INTEREST_RATE_FLAG_MONTH_END = InterVar0_2;
+	if (null(Lnk_Lkp_To_Jn.LOAN_FUNDING_CLOSE_DATE)) {
+		Lnk_Ds_To_Cpy1.LOAN_FUNDING_CLOSE_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.LOAN_FUNDING_CLOSE_DATE = Lnk_Lkp_To_Jn.LOAN_FUNDING_CLOSE_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.LAST_MODIFIED_DATE = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.ACCOUNT_STATUS)) {
+		Lnk_Ds_To_Cpy1.ACCOUNT_STATUS = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ACCOUNT_STATUS = Lnk_Lkp_To_Jn.ACCOUNT_STATUS;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.ACCOUNT_CYCLE_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SCORE_EXCEPTION_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.NATURAL_CURRENCY = InterVar0_10;
+	if (null(Lnk_Lkp_To_Jn.CLOSED_DATE)) {
+		Lnk_Ds_To_Cpy1.CLOSED_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.CLOSED_DATE = Lnk_Lkp_To_Jn.CLOSED_DATE;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_MATURITY_DATE)) {
+		Lnk_Ds_To_Cpy1.ORIGINAL_LOAN_MATURITY_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ORIGINAL_LOAN_MATURITY_DATE = Lnk_Lkp_To_Jn.ORIGINAL_LOAN_MATURITY_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.REVOLVING_FLAG = InterVar0_11;
+	if (null(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TO_VALUE)) {
+		Lnk_Ds_To_Cpy1.ORIGINAL_LOAN_TO_VALUE = InterVar0_1;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TO_VALUE , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TO_VALUE , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.ORIGINAL_LOAN_TO_VALUE = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TO_VALUE , InterVar0_12);
+			Lnk_Ds_To_Cpy1.ORIGINAL_LOAN_TO_VALUE = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.MONTHS_ON_BOOK_LOCAL)) {
+		Lnk_Ds_To_Cpy1.MONTHS_ON_BOOK_LOCAL = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.MONTHS_ON_BOOK_LOCAL = Lnk_Lkp_To_Jn.MONTHS_ON_BOOK_LOCAL;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.ORIGIN_CHANNEL = InterVar0_2;
+	Lnk_Ds_To_Cpy1.LOAN_TYPE = InterVar0_17;
+	Lnk_Ds_To_Cpy1.MORTGAGE_TYPE = InterVar0_5;
+	Lnk_Ds_To_Cpy1.BOOKED_USING_STANDARD_SCORE = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TERM)) {
+		Lnk_Ds_To_Cpy1.ORIGINAL_LOAN_TERM = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ORIGINAL_LOAN_TERM = Lnk_Lkp_To_Jn.ORIGINAL_LOAN_TERM;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.TOP_UP_FLAG)) {
+		Lnk_Ds_To_Cpy1.TOP_UP_FLAG = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.TOP_UP_FLAG = Lnk_Lkp_To_Jn.TOP_UP_FLAG;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.LOCAL_BLOCK_CODE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CURRENCY_CODE = InterVar0_10;
+	Lnk_Ds_To_Cpy1.ACCOUNT_SOURCE = InterVar0_18;
+	if (null(Lnk_Lkp_To_Jn.SKIP_A_PAYMENT)) {
+		Lnk_Ds_To_Cpy1.SKIP_A_PAYMENT = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.SKIP_A_PAYMENT = Lnk_Lkp_To_Jn.SKIP_A_PAYMENT;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.HOUSEHOLD_ID = InterVar0_1;
+	Lnk_Ds_To_Cpy1.RISK_MITIGANT_TYPE = InterVar0_2;
+	Lnk_Ds_To_Cpy1.RISK_MITIGANT_SUB_TYPE_1 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.RISK_MITIGANT_SUB_TYPE_2 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.RISK_MITIGANT_SUB_TYPE_3 = InterVar0_19;
+	Lnk_Ds_To_Cpy1.RISK_MITIGANT_SUB_TYPE_4 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LIMIT_EVENT_CODE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LIMIT_EVENT_AMOUNT = InterVar0_4;
+	if (null(Lnk_Lkp_To_Jn.ACTUAL_PAYOFF_DATE)) {
+		Lnk_Ds_To_Cpy1.ACTUAL_PAYOFF_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ACTUAL_PAYOFF_DATE = Lnk_Lkp_To_Jn.ACTUAL_PAYOFF_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.LIMIT_EVENT_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LIMIT_EVENT_INITIATED_CODE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REPAYMENT_TYPE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REPAYMENT_INT_ONLY_EXP_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.BALLOON_PAYMENT_EXISTS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CURR_NEGATIVE_AMORTIZING_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.NON_TRADITIONAL_MORTGAGE = InterVar0_20;
+	Lnk_Ds_To_Cpy1.PRINCIPAL_DEFERRAL_OPTION = InterVar0_6;
+	Lnk_Ds_To_Cpy1.PRIN_DEF_OPTION_EXP_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.INTEREST_DEFERRAL_OPTION = InterVar0_1;
+	Lnk_Ds_To_Cpy1.INT_DEFERRAL_OPTION_EXP_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PRODUCT_FDIC_TYPE = InterVar0_2;
+	Lnk_Ds_To_Cpy1.LINE_REAGE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_OR_LINE_OWNER = InterVar0_0;
+	if (null(Lnk_Lkp_To_Jn.ACCRUAL_STATUS)) {
+		Lnk_Ds_To_Cpy1.ACCRUAL_STATUS = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ACCRUAL_STATUS = Lnk_Lkp_To_Jn.ACCRUAL_STATUS;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.REASON_FOR_DEFAULT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.THIRD_PARTY_SALE_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PERFORMANCE_OF_FIRST_LIEN = InterVar0_1;
+	Lnk_Ds_To_Cpy1.COMMERCIAL_LOAN_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REMODIFIED_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PERFORMANCE_OF_JUNIOR_LIENS = InterVar0_21;
+	Lnk_Ds_To_Cpy1.INTEREST_ONLY_TERM_ORIGINAL = InterVar0_4;
+	if (null(Lnk_Lkp_To_Jn.LAST_FUNDS_ADVANCED_DATE)) {
+		Lnk_Ds_To_Cpy1.LAST_FUNDS_ADVANCED_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.LAST_FUNDS_ADVANCED_DATE = Lnk_Lkp_To_Jn.LAST_FUNDS_ADVANCED_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.FUNDS_ADVANCED_COMPLETE_FLAG = InterVar0_20;
+	Lnk_Ds_To_Cpy1.HELD_FOR_SALE_BALANCE = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ARRANGEMENT_PURPOSE_CODE = InterVar0_22;
+	if (null(Lnk_Lkp_To_Jn.CURR_LOAN_LEASE_MATURITY_DATE)) {
+		Lnk_Ds_To_Cpy1.CURR_LOAN_LEASE_MATURITY_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.CURR_LOAN_LEASE_MATURITY_DATE = Lnk_Lkp_To_Jn.CURR_LOAN_LEASE_MATURITY_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.LAST_BASEL_DEFAULT_START_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CUT_OFF_SCORE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LAST_BASEL_DEFAULT_END_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.TOP_UP_CUT_OFF_SCORE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REPURCH_PUT_BACK_COMPLETION_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.RISK_MANAGEMENT_TYPE = InterVar0_2;
+	if (null(Lnk_Lkp_To_Jn.ACCT_SUSPENSION_TEMP_BLOCK_RSN)) {
+		Lnk_Ds_To_Cpy1.ACCT_SUSPENSION_TEMP_BLOCK_RSN = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ACCT_SUSPENSION_TEMP_BLOCK_RSN = Lnk_Lkp_To_Jn.ACCT_SUSPENSION_TEMP_BLOCK_RSN;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.LAST_ACTIVITY_DATE = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.ACCT_SUSPENSION_TEMP_BLOCK_DT)) {
+		Lnk_Ds_To_Cpy1.ACCT_SUSPENSION_TEMP_BLOCK_DT = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ACCT_SUSPENSION_TEMP_BLOCK_DT = Lnk_Lkp_To_Jn.ACCT_SUSPENSION_TEMP_BLOCK_DT;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.APPLICATION_ID = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CREDIT_EXPIRATION_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.HOUSEHOLD_TOTAL_INCOME = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LAST_RENEWAL_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LAST_NON_ACCRUAL_EFFECTIVE_DT = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.LOAN_TERM_END_DATE)) {
+		Lnk_Ds_To_Cpy1.LOAN_TERM_END_DATE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.LOAN_TERM_END_DATE = Lnk_Lkp_To_Jn.LOAN_TERM_END_DATE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.END_OF_PERIOD_COMM_UNDRW_LINE = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ASSET_VALUE_ACCT_ENTERED_OREO = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CURRENT_ADVISED_COMMITTED_LINE = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LOAN_AMOUNT = Lnk_Lkp_To_Jn.LOAN_AMOUNT;
+	if (null(Lnk_Lkp_To_Jn.LOAN_ADVANCES)) {
+		Lnk_Ds_To_Cpy1.LOAN_ADVANCES = InterVar0_1;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.LOAN_ADVANCES , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.LOAN_ADVANCES , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.LOAN_ADVANCES = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.LOAN_ADVANCES , InterVar0_12);
+			Lnk_Ds_To_Cpy1.LOAN_ADVANCES = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.CREDIT_LINE_UTILIZATION = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CURR_UNDRW_ADV_UNCT_LMT_MOED = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CURR_UNDRW_UNADV_UNCT_LMT_MOED = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LAST_CREDIT_USAGE_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SENIOR_LIEN_UPB_AT_ORIGIN = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ASSET_VALUE_AT_ORIGIN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CPF_LOAN_AMOUNT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_TO_VALUE_AT_DEFAULT = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.PAYMENT_MISSED_COUNT)) {
+		Lnk_Ds_To_Cpy1.PAYMENT_MISSED_COUNT = InterVar0_1;
+	} else {
+		InterVar0_15 = Lnk_Lkp_To_Jn.PAYMENT_MISSED_COUNT;
+		Lnk_Ds_To_Cpy1.PAYMENT_MISSED_COUNT = InterVar0_15;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.PAYMENT_AMOUNT_MONTH_END)) {
+		Lnk_Ds_To_Cpy1.PAYMENT_AMOUNT_MONTH_END = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.PAYMENT_AMOUNT_MONTH_END = Lnk_Lkp_To_Jn.PAYMENT_AMOUNT_MONTH_END;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.PRINCIPAL_DEFERRAL_AMOUNT = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.PRINCIPAL_PAID)) {
+		Lnk_Ds_To_Cpy1.PRINCIPAL_PAID = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.PRINCIPAL_PAID = Lnk_Lkp_To_Jn.PRINCIPAL_PAID;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.PRINCIPAL_WAIVED = InterVar0_4;
+	if (null(Lnk_Lkp_To_Jn.ORIGINAL_PRINCIPAL_AMOUNT)) {
+		Lnk_Ds_To_Cpy1.ORIGINAL_PRINCIPAL_AMOUNT = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.ORIGINAL_PRINCIPAL_AMOUNT = Lnk_Lkp_To_Jn.ORIGINAL_PRINCIPAL_AMOUNT;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.ORIGINAL_COMBINED_LTV)) {
+		Lnk_Ds_To_Cpy1.ORIGINAL_COMBINED_LTV = InterVar0_1;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_COMBINED_LTV , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_COMBINED_LTV , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.ORIGINAL_COMBINED_LTV = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_COMBINED_LTV , InterVar0_12);
+			Lnk_Ds_To_Cpy1.ORIGINAL_COMBINED_LTV = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.PRIN_AND_INT_AMT_AT_ORIGIN)) {
+		Lnk_Ds_To_Cpy1.PRIN_AND_INT_AMT_AT_ORIGIN = InterVar0_4;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.PRIN_AND_INT_AMT_AT_ORIGIN , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.PRIN_AND_INT_AMT_AT_ORIGIN , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.PRIN_AND_INT_AMT_AT_ORIGIN = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.PRIN_AND_INT_AMT_AT_ORIGIN , InterVar0_12);
+			Lnk_Ds_To_Cpy1.PRIN_AND_INT_AMT_AT_ORIGIN = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.SCHEDULED_PRIN_BALANCE_AMT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REFRESHED_COMBLTV_AFTER_MODN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LOCKED_AMT_AMORT_LOC = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOCKED_AMT_INT_ONLY_LOC = InterVar0_1;
+	Lnk_Ds_To_Cpy1.GROSS_OUTSTNG_TOT_BAL_MOED = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.MINIMUM_PAYMENT_DUE)) {
+		Lnk_Ds_To_Cpy1.MINIMUM_PAYMENT_DUE = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.MINIMUM_PAYMENT_DUE = Lnk_Lkp_To_Jn.MINIMUM_PAYMENT_DUE;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.CREDIT_ENHANCED_AMOUNT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CURRENT_COMBINED_LOAN_TO_VALUE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CURRENT_LOAN_TO_VALUE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PAYMENT_AMOUNT_CYCLE_END = InterVar0_1;
+	Lnk_Ds_To_Cpy1.OUTSTANDING_BALANCE_CYCLE_END = InterVar0_1;
+	Lnk_Ds_To_Cpy1.JUNIOR_LIENS_AT_ORIGIN = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.GROSS_OUTSTNG_PRIN_BAL_MOED)) {
+		Lnk_Ds_To_Cpy1.GROSS_OUTSTNG_PRIN_BAL_MOED = InterVar0_1;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.GROSS_OUTSTNG_PRIN_BAL_MOED , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.GROSS_OUTSTNG_PRIN_BAL_MOED , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.GROSS_OUTSTNG_PRIN_BAL_MOED = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.GROSS_OUTSTNG_PRIN_BAL_MOED , InterVar0_12);
+			Lnk_Ds_To_Cpy1.GROSS_OUTSTNG_PRIN_BAL_MOED = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.ORIGAL_TOT_ADV_COMM_LMT_MOED = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ORIG_TOT_ADV_UNCT_LMT_MOED = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ORIG_TOT_UNADV_UNCT_LMT_MOED = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CURR_TOT_ADV_UNCT_LMT_MOED = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CURR_TOT_UNADV_UNCT_LMT_MOED = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ENDING_NET_RECEIVABLES_LOCAL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.BALLOON_PAYMENT_AMOUNT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.PRINCIPAL_REVERSALS = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.TOTAL_FUNDS_DISBURSED)) {
+		Lnk_Ds_To_Cpy1.TOTAL_FUNDS_DISBURSED = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.TOTAL_FUNDS_DISBURSED = Lnk_Lkp_To_Jn.TOTAL_FUNDS_DISBURSED;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.TOTAL_CREDIT_LINE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.UNFUNDED_COMMITMENT_AMOUNT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CREDIT_RISK_CAPITAL = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SPECIFIC_RESERVES = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PRE_PAYMENT_AMOUNT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.REAL_ESTATE_OWNED_GAIN_OR_LOSS = InterVar0_4;
+	if (null(Lnk_Lkp_To_Jn.OUTSTANDING_FEES)) {
+		Lnk_Ds_To_Cpy1.OUTSTANDING_FEES = InterVar0_1;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.OUTSTANDING_FEES , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.OUTSTANDING_FEES , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.OUTSTANDING_FEES = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.OUTSTANDING_FEES , InterVar0_12);
+			Lnk_Ds_To_Cpy1.OUTSTANDING_FEES = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.NET_OUTSTNG_PRIN_BAL_MOED = Lnk_Lkp_To_Jn.NET_OUTSTNG_PRIN_BAL_MOED;
+	Lnk_Ds_To_Cpy1.REO_SALE_PROCEEDS = InterVar0_4;
+	Lnk_Ds_To_Cpy1.FEE_INCOME = InterVar0_4;
+	Lnk_Ds_To_Cpy1.FEE_REVERSAL_AMOUNT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.INTEREST_AND_FEE_INCOME = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AND_FEE)) {
+		Lnk_Ds_To_Cpy1.ACCRUED_INTEREST_AND_FEE = InterVar0_1;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AND_FEE , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AND_FEE , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.ACCRUED_INTEREST_AND_FEE = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AND_FEE , InterVar0_12);
+			Lnk_Ds_To_Cpy1.ACCRUED_INTEREST_AND_FEE = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	if (null(Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST_AND_FEE)) {
+		Lnk_Ds_To_Cpy1.OUTSTANDING_INTEREST_AND_FEE = InterVar0_1;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST_AND_FEE , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST_AND_FEE , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.OUTSTANDING_INTEREST_AND_FEE = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST_AND_FEE , InterVar0_12);
+			Lnk_Ds_To_Cpy1.OUTSTANDING_INTEREST_AND_FEE = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.BILLED_FEE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.BILLED_INTEREST = InterVar0_1;
+	Lnk_Ds_To_Cpy1.POST_CHARGE_OFF_BALANCEF = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PRE_CHARGE_OFF_SALE_PROCEEDS = InterVar0_4;
+	Lnk_Ds_To_Cpy1.PRE_CHARGE_OFF_BOOK_VALUE = InterVar0_4;
+	Lnk_Ds_To_Cpy1.INTEREST_INCOME = InterVar0_4;
+	if (null(Lnk_Lkp_To_Jn.CURR_PRINCIPAL_AND_INT_AMOUNT)) {
+		Lnk_Ds_To_Cpy1.CURR_PRINCIPAL_AND_INT_AMOUNT = InterVar0_4;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.CURR_PRINCIPAL_AND_INT_AMOUNT , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.CURR_PRINCIPAL_AND_INT_AMOUNT , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.CURR_PRINCIPAL_AND_INT_AMOUNT = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.CURR_PRINCIPAL_AND_INT_AMOUNT , InterVar0_12);
+			Lnk_Ds_To_Cpy1.CURR_PRINCIPAL_AND_INT_AMOUNT = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.TOT_DEBT_AT_INVOLUNTARY_TERMN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ESCROW_AMOUNT_CURRENT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.FEE_REVERSAL_DATE_MONTH_END = InterVar0_1;
+	Lnk_Ds_To_Cpy1.FEE_PAYMENTS = Lnk_Lkp_To_Jn.FEE_PAYMENTS;
+	Lnk_Ds_To_Cpy1.INTEREST_PAYMENTS = Lnk_Lkp_To_Jn.INTEREST_PAYMENTS;
+	Lnk_Ds_To_Cpy1.OUTSTANDING_INTEREST = Lnk_Lkp_To_Jn.OUTSTANDING_INTEREST;
+	Lnk_Ds_To_Cpy1.INTEREST_REVERSAL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LTD_INT_REV_IMPACTING_ALLL = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LTD_INT_REV_NOT_IMPACTING_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LTD_FEE_REV_IMPACTING_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LTD_FEE_REV_NOT_IMPACTING_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.PRINCIPAL_AND_INT_BEFORE_MODN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.PRINCIPAL_AND_INT_AFTER_MODN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ESCROW_AMOUNT_AT_ORIGIN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.OTHER_REAL_ESTATE_OWNED_BAL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ACCRUED_INTEREST_AMOUNT = Lnk_Lkp_To_Jn.ACCRUED_INTEREST_AMOUNT;
+	Lnk_Ds_To_Cpy1.ACCRUED_FEES_AMOUNT = Lnk_Lkp_To_Jn.ACCRUED_FEES_AMOUNT;
+	Lnk_Ds_To_Cpy1.EARNINGS_BEFORE_INT_AND_TAXES = InterVar0_1;
+	Lnk_Ds_To_Cpy1.TOTAL_REVENUE = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.EXPENSES)) {
+		Lnk_Ds_To_Cpy1.EXPENSES = InterVar0_1;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.EXPENSES , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.EXPENSES , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.EXPENSES = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.EXPENSES , InterVar0_12);
+			Lnk_Ds_To_Cpy1.EXPENSES = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.NET_INCOME = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CUMTVE_LIFETIME_FAIR_VALUE_ADJ = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CUMTVE_LIFETIME_PURCHASE_IMPRS = InterVar0_4;
+	Lnk_Ds_To_Cpy1.BASEL_PORTFOLIO_ID = InterVar0_1;
+	if (null(Lnk_Lkp_To_Jn.LOCAL_PRODUCT_ID)) {
+		Lnk_Ds_To_Cpy1.LOCAL_PRODUCT_ID = InterVar0_1;
+	} else {
+		Lnk_Ds_To_Cpy1.LOCAL_PRODUCT_ID = Lnk_Lkp_To_Jn.LOCAL_PRODUCT_ID;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.AFFILIATE_CODE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.BUSINESS_UNIT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.OPERATING_UNIT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.BASEL_PRODUCT = Lnk_Lkp_To_Jn.BASEL_PRODUCT;
+	Lnk_Ds_To_Cpy1.PMAC_PORTFOLIO_ID = InterVar0_23;
+	Lnk_Ds_To_Cpy1.ENTERPRISE_STANDARD_PRODUCT_ID = InterVar0_1;
+	Lnk_Ds_To_Cpy1.MANAGED_GEOGRAPHY = InterVar0_24;
+	Lnk_Ds_To_Cpy1.REQUESTED_PRODUCT_TYPE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOCAL_DELQ_BUCKET_MONTH_END = Lnk_Lkp_To_Jn.LOCAL_DELQ_BUCKET_MONTH_END;
+	Lnk_Ds_To_Cpy1.DELQ_STRING_24_MTH_MONTH_END = Lnk_Lkp_To_Jn.DELQ_STRING_24_MTH_MONTH_END;
+	Lnk_Ds_To_Cpy1.DELQ_BAND_NORMALIZED_MONTH_END = Lnk_Lkp_To_Jn.DELQ_BAND_NORMALIZED_MONTH_END;
+	Lnk_Ds_To_Cpy1.DELQ_BAND_NORM_BASIS_MOED = InterVar0_2;
+	Lnk_Ds_To_Cpy1.DELINQUENT_AMOUNT_CAPITALIZED = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ACCT_60_DPD_LAST_THREE_YEARS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.DAYS_PAST_DUE_MONTH_END = Lnk_Lkp_To_Jn.DAYS_PAST_DUE_MONTH_END;
+	Lnk_Ds_To_Cpy1.DELINQUENCY_START_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.DELINQUENCY_END_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.DELINQUENCY_DURATION = InterVar0_21;
+	Lnk_Ds_To_Cpy1.DEFICIENCY_BAL_COLLN_OPTION = InterVar0_17;
+	Lnk_Ds_To_Cpy1.DEFICIENCY_BAL_COLLN_STATUS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ESCROW_AMT_BEFORE_MODN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ESCROW_AMT_AFTER_MODIFICATION = InterVar0_4;
+	Lnk_Ds_To_Cpy1.CURRENTLY_IN_COLLECTIONS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.COLLECTIONS_ASSIGNMENT = InterVar0_2;
+	Lnk_Ds_To_Cpy1.COLLECTIONS_ENTERED_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LAST_COLLECTION_EXIT_REASON = InterVar0_1;
+	Lnk_Ds_To_Cpy1.FORECLOSURE_STATUS_CODE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.FORECLOSURE_REPOSSESS_START_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.OTHER_REAL_EST_OWNED_STATUS_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SHORT_SALE_AMOUNT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.FORECLOSURE_SALE_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.FORECLOSURE_REFERRAL_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.FORECLOSURE_SUSPENDED = InterVar0_6;
+	Lnk_Ds_To_Cpy1.REAL_ESTATE_OWNED_CODE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.SALES_PRICE_OF_PROPERTY = InterVar0_4;
+	Lnk_Ds_To_Cpy1.OREO_PROPERTY_SOLD_DISPOSE_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.BANKRUPTCY_CHARGE_OFF_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ACCOUNT_BANKRUPTCY_FILED_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.BANKRUPTCY_CHAPTER = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ACCOUNT_BANKRUPTCY_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LAST_CHARGE_OFF_REASON_CODE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.POST_CHARGEOFF_SALE_PROCEEDS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PRINCIPAL_WRITE_DOWN_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.LAST_WRITEDOWN_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LTD_PRIN_WRITE_OFFS_IMP_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LTD_PRIN_WRITE_OFFS_NOIMP_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LTD_PRIN_REV_IMPACTING_ALLL = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LTD_PRIN_REV_NOIMP_ALLL = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LTD_INT_WRITE_OFFS_IMP_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LTD_INT_WRITE_OFFS_NOIMP_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LTD_FEE_WRITE_OFFS_IMP_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LTD_FEE_WRITE_OFFS_NOIMP_ALLL = InterVar0_4;
+	Lnk_Ds_To_Cpy1.TOTAL_CREDIT_LOSS = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LOSS_MITN_EVER_ENROLLED_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOSS_MITN_EVENT_FAS91_BAL = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOSS_MITN_EVT_LTD_FFIEC_WRTDWN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.GOVT_MODIFICATION_INDICATOR = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOSS_MITN_PERFORMANCE_STATUS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.TROUBLE_DEBT_RESTRUCTURE_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.LOAN_MODIFICATION_TYPE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOSS_MITN_REPAY_PLN_PERFM_STAT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOSS_MITN_INT_TYPE_CONV_DURN = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LAST_SETTLEMENT_NEGOTIATED_AMT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REPAYMENT_PLAN_START_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.TERM_MODIFICATION_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.REAGE_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LAST_WORKOUT_TYPE_C_OR_E = InterVar0_1;
+	Lnk_Ds_To_Cpy1.TROUBLED_DEBT_RESTRUCTURE_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_MODIFICATION_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.LOAN_MODIFICATION_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_MODIFICATION_FDIC_TYPE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PRINCIPAL_FORGIVENESS_AMOUNT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.OTHER_MODN_ACTION_TYPE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.REMAINING_TERM_BEFORE_MODN = InterVar0_25;
+	Lnk_Ds_To_Cpy1.REMAINING_TERM_AFTER_MODN = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ALT_HOME_LIQN_LOSS_MITN_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ALT_HOME_RETN_LOSS_MITN_DT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_MODIFICATION_EVENT_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ARM_INITIAL_RATE_CAP = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ARM_INITIAL_PAYMENT_ADJ_PERIOD = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ARM_INITIAL_PAYMENT_ADJ_CAP = InterVar0_4;
+	if (null(Lnk_Lkp_To_Jn.ORIGINAL_MONTHLY_PAYMENT)) {
+		Lnk_Ds_To_Cpy1.ORIGINAL_MONTHLY_PAYMENT = InterVar0_4;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_MONTHLY_PAYMENT , InterVar0_12) , InterVar0_13 , 1) == 0)) {
+			InterVar0_15 = string_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_MONTHLY_PAYMENT , InterVar0_12) + InterVar0_14;
+			Lnk_Ds_To_Cpy1.ORIGINAL_MONTHLY_PAYMENT = InterVar0_15;
+		} else {
+			InterVar0_16 = ustring_from_decimal(Lnk_Lkp_To_Jn.ORIGINAL_MONTHLY_PAYMENT , InterVar0_12);
+			Lnk_Ds_To_Cpy1.ORIGINAL_MONTHLY_PAYMENT = InterVar0_16;
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_To_Cpy1.INTEREST_RATE_MARGIN_TYPE = InterVar0_19;
+	Lnk_Ds_To_Cpy1.ARM_INITIAL_RATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ARM_INITIAL_RATE_PERIOD = Lnk_Lkp_To_Jn.ARM_INITIAL_RATE_PERIOD;
+	Lnk_Ds_To_Cpy1.ARM_PAYMENT_RESET_FREQUENCY = InterVar0_1;
+	Lnk_Ds_To_Cpy1.NEGATIVE_AMORT_PERCENT_LMT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ARM_PERIODIC_RATE_CAP = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ARM_PERIODIC_RATE_FLOOR = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ARM_LIFETIME_RATE_FLOOR = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ARM_PERIODIC_PAYMENT_CAP = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ARM_PERIODIC_PAY_FLOOR = InterVar0_1;
+	Lnk_Ds_To_Cpy1.OPTION_ARM_IN_REPORTING_MONTH = InterVar0_1;
+	Lnk_Ds_To_Cpy1.INTEREST_RATE_FROZEN_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ARM_MARGIN_AT_ORIGIN = InterVar0_1;
+	Lnk_Ds_To_Cpy1.INTEREST_ONLY_AT_ORIGIN = InterVar0_1;
+	Lnk_Ds_To_Cpy1.OPTION_ARM_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.INTEREST_TYPE_AT_ORIGIN = InterVar0_2;
+	Lnk_Ds_To_Cpy1.INTEREST_TYPE_IN_CURRENT_MONTH = InterVar0_2;
+	Lnk_Ds_To_Cpy1.ORIGINAL_INTEREST_RATE = Lnk_Lkp_To_Jn.ORIGINAL_INTEREST_RATE;
+	Lnk_Ds_To_Cpy1.INTEREST_RATE_INDEX_MONTH_END = InterVar0_26;
+	Lnk_Ds_To_Cpy1.INTEREST_RATE_SPREAD_MONTH_END = InterVar0_4;
+	Lnk_Ds_To_Cpy1.RT_RESET_PERIODICITY_INTVL_ID = InterVar0_27;
+	Lnk_Ds_To_Cpy1.INTEREST_RATE_TYPE = InterVar0_28;
+	Lnk_Ds_To_Cpy1.INT_RATE_EFFECTIVE_DT_MOED = InterVar0_1;
+	Lnk_Ds_To_Cpy1.INT_RATE_EXP_DT_MOED = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PROMO_INTEREST_RATE_ELIGIBLE = Lnk_Lkp_To_Jn.PROMO_INTEREST_RATE_ELIGIBLE;
+	Lnk_Ds_To_Cpy1.INTEREST_RATE_MONTH_END = Lnk_Lkp_To_Jn.INTEREST_RATE_MONTH_END;
+	Lnk_Ds_To_Cpy1.INT_RATE_ACTIVE_FLAG_MONTH_END = InterVar0_20;
+	Lnk_Ds_To_Cpy1.INT_RATE_BEFORE_MODIFICATION = InterVar0_4;
+	Lnk_Ds_To_Cpy1.INT_RATE_AFTER_MODIFICATION = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ORIGINAL_ACCOUNT_NUMBER_1 = Lnk_Lkp_To_Jn.ORIGINAL_ACCOUNT_NUMBER_1;
+	Lnk_Ds_To_Cpy1.ORIGINAL_ACCOUNT_NUMBER_2 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ORIGINAL_ACCOUNT_NUMBER_3 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ORIGINAL_ACCOUNT_NUMBER_4 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ORIGINAL_ACCOUNT_NUMBER_5 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ORIGINAL_ACCOUNT_NUMBER_6 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ORIGINAL_ACCOUNT_NUMBER_7 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ORIGINAL_ACCOUNT_NUMBER_8 = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ABOVE_CUT_OFF_SCORE_FLAG = InterVar0_1;
+	Lnk_Ds_To_Cpy1.APPLICATION_OVERRIDE_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.APPLICATION_OVERRIDE_REASON = InterVar0_6;
+	Lnk_Ds_To_Cpy1.APP_OVERRIDE_LINE_LOAN_AMT = InterVar0_4;
+	Lnk_Ds_To_Cpy1.ORIGINAL_LOCAL_SCORE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ASSET_VERIFICATION_TYPE = InterVar0_5;
+	Lnk_Ds_To_Cpy1.BOOKING_PRICING_EXCEPTION_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.BOOKING_PROCESS_EXCEPTION_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.DBT_INC_BACK_END_AT_ORIGIN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.DBT_INC_FRONT_END_AT_ORIGIN = InterVar0_4;
+	Lnk_Ds_To_Cpy1.LOAN_SOURCE_OR_CHANNEL = InterVar0_29;
+	Lnk_Ds_To_Cpy1.LOAN_APPROVER_ID = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_REVIEWER_ID = InterVar0_1;
+	Lnk_Ds_To_Cpy1.BOOKING_EXCEPTION_REASON_CODE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.FIRST_APPLICATION_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LAST_APPLICATION_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.FIRST_APPROVAL_TYPE = InterVar0_2;
+	Lnk_Ds_To_Cpy1.LAST_REAPPROVAL_TYPE = InterVar0_2;
+	Lnk_Ds_To_Cpy1.LAST_APPROVAL_ADJUDN_BASIS = InterVar0_5;
+	Lnk_Ds_To_Cpy1.CREDIT_ADJUDICATION_PROGRAM = InterVar0_2;
+	Lnk_Ds_To_Cpy1.BASEL_SCORE_BAND = InterVar0_1;
+	Lnk_Ds_To_Cpy1.ORIG_ACCT_INCOME_DOC_TYPE = InterVar0_2;
+	Lnk_Ds_To_Cpy1.ORIG_ACCT_INCOME_DOC_TYPE2 = InterVar0_2;
+	Lnk_Ds_To_Cpy1.CITIGROUP_VIP_ACCT_IND = InterVar0_1;
+	Lnk_Ds_To_Cpy1.NET_RECOVERY_AMOUNT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.CREDIT_CLASS = InterVar0_1;
+	Lnk_Ds_To_Cpy1.GRACE_PERIOD_DAY_COUNT = Lnk_Lkp_To_Jn.GRACE_PERIOD_DAY_COUNT;
+	Lnk_Ds_To_Cpy1.REPURCHASE_REQUEST_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.LOAN_REPURCHASE_TYPE = InterVar0_21;
+	Lnk_Ds_To_Cpy1.REPURCHASE_COMPLETION_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.NOTICE_OF_DEFAULT_DATE = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PREPMT_PENALTY_WAIVED_THIS_MON = InterVar0_30;
+	Lnk_Ds_To_Cpy1.PREPMT_PENALTY_WAIVED_AMOUNT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PRIN_OR_INT_RECOURSE_FLAG = InterVar0_6;
+	Lnk_Ds_To_Cpy1.PRIN_OR_INT_RECOURSE_AMOUNT = InterVar0_1;
+	Lnk_Ds_To_Cpy1.PRIN_OR_INT_RECOURSE_ENTITY = InterVar0_1;
+	writerecord 0;
+	RowRejected0 = 0;
+	// evaluate columns (no constraints) for link: Lnk_Cols_To_RemDup
+	Lnk_Cols_To_RemDup.ACCOUNT_NUMBER = Lnk_Lkp_To_Jn.ACCOUNT_NUMBER;
+	writerecord 1;
+	RowRejected0 = 0;
+	// evaluate columns (no constraints) for link: DSLink173
+	DSLink173.ORIGINAL_ACCOUNT_NUMBER_1 = u_trimc_string(Lnk_Lkp_To_Jn.ORIGINAL_ACCOUNT_NUMBER_1);
+	writerecord 2;
+	RowRejected0 = 0;
+}
+
+finish {
+}
