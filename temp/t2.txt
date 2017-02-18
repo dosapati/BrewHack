@@ -1,0 +1,136 @@
+
+//
+// Generated file to implement the V0S2_GNS_PLN_VN_CREDIT_FACILITY_FILE_HDB_Tfm_Src_Data transform operator.
+//
+
+// define our input/output link names
+inputname 0 Lnk_Nxg_Data;
+outputname 0 Lnk_Ds_Data;
+outputname 1 Lnk_Cpy_Cfl;
+
+global {
+	// Job parameter declaration
+	ustring V_MISDATE;
+}
+
+initialize {
+	// define our control variables
+	int8 RowRejected0;
+	int8 NullSetVar0;
+
+	// declare our intermediate variables for this section
+	string InterVar0_0;
+	string InterVar0_1;
+	string InterVar0_2;
+	string InterVar0_3;
+	string InterVar0_4;
+	string InterVar0_5;
+	string InterVar0_6;
+	string InterVar0_7;
+
+	// initialise constant values which require conversion
+	InterVar0_0 = &quot;&quot;;
+	InterVar0_1 = &quot;suppress_zero&quot;;
+	InterVar0_2 = &quot;.&quot;;
+	InterVar0_3 = &quot;.0&quot;;
+	InterVar0_4 = &quot;4&quot;;
+	InterVar0_5 = &quot;Y&quot;;
+	InterVar0_6 = &quot;0.0&quot;;
+	InterVar0_7 = &quot;2&quot;;
+}
+
+mainloop {
+
+	// initialise the rejected row variable
+	RowRejected0 = 1;
+
+	// evaluate columns (no constraints) for link: Lnk_Ds_Data
+	Lnk_Ds_Data.REPORTING_PERIOD = u_substring_1(V_MISDATE , 1 , 6);
+	if (null(Lnk_Nxg_Data.CCL_AMOUNT)) {
+		Lnk_Ds_Data.CCL_AMOUNT = InterVar0_0;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Nxg_Data.CCL_AMOUNT , InterVar0_1) , InterVar0_2 , 1) == 0)) {
+			Lnk_Ds_Data.CCL_AMOUNT = (string_from_decimal(Lnk_Nxg_Data.CCL_AMOUNT , InterVar0_1) + InterVar0_3);
+		} else {
+			Lnk_Ds_Data.CCL_AMOUNT = string_from_decimal(Lnk_Nxg_Data.CCL_AMOUNT , InterVar0_1);
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_Data.LIEN_INDICATOR = InterVar0_4;
+	Lnk_Ds_Data.REVOLVING_FLAG = InterVar0_5;
+	Lnk_Ds_Data.ORIGINAL_LOAN_TO_VALUE = InterVar0_0;
+	Lnk_Ds_Data.RISK_MITIGANT_SUB_TYPE_1 = InterVar0_0;
+	Lnk_Ds_Data.RISK_MITIGANT_SUB_TYPE_2 = InterVar0_0;
+	Lnk_Ds_Data.RISK_MITIGANT_SUB_TYPE_3 = InterVar0_0;
+	Lnk_Ds_Data.RISK_MITIGANT_SUB_TYPE_4 = InterVar0_0;
+	Lnk_Ds_Data.END_OF_PERIOD_COMM_UNDRW_LINE = InterVar0_0;
+	Lnk_Ds_Data.CURRENT_ADVISED_COMMITTED_LINE = InterVar0_0;
+	Lnk_Ds_Data.LOAN_AMOUNT = InterVar0_0;
+	if (null(Lnk_Nxg_Data.ORA084)) {
+		Lnk_Ds_Data.CREDIT_LINE_UTILIZATION = InterVar0_0;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Nxg_Data.ORA084 , InterVar0_1) , InterVar0_2 , 1) == 0)) {
+			Lnk_Ds_Data.CREDIT_LINE_UTILIZATION = (string_from_decimal(Lnk_Nxg_Data.ORA084 , InterVar0_1) + InterVar0_3);
+		} else {
+			Lnk_Ds_Data.CREDIT_LINE_UTILIZATION = string_from_decimal(Lnk_Nxg_Data.ORA084 , InterVar0_1);
+		}
+		//;
+	}
+	//;
+	if (null(Lnk_Nxg_Data.ORA094)) {
+		Lnk_Ds_Data.CURR_UNDRW_ADV_UNCT_LMT_MOED = InterVar0_0;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Nxg_Data.ORA094 , InterVar0_1) , InterVar0_2 , 1) == 0)) {
+			Lnk_Ds_Data.CURR_UNDRW_ADV_UNCT_LMT_MOED = (string_from_decimal(Lnk_Nxg_Data.ORA094 , InterVar0_1) + InterVar0_3);
+		} else {
+			Lnk_Ds_Data.CURR_UNDRW_ADV_UNCT_LMT_MOED = string_from_decimal(Lnk_Nxg_Data.ORA094 , InterVar0_1);
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_Data.CURR_UNDRW_UNADV_UNCT_LMT_MOED = InterVar0_6;
+	Lnk_Ds_Data.ORIGINAL_COMBINED_LTV = InterVar0_0;
+	Lnk_Ds_Data.CURRENT_COMBINED_LOAN_TO_VALUE = InterVar0_0;
+	Lnk_Ds_Data.CURRENT_LOAN_TO_VALUE = InterVar0_0;
+	Lnk_Ds_Data.ORIGAL_TOT_ADV_COMM_LMT_MOED = InterVar0_0;
+	if (null(Lnk_Nxg_Data.ORA631)) {
+		Lnk_Ds_Data.ORIG_TOT_ADV_UNCT_LMT_MOED = InterVar0_0;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Nxg_Data.ORA631 , InterVar0_1) , InterVar0_2 , 1) == 0)) {
+			Lnk_Ds_Data.ORIG_TOT_ADV_UNCT_LMT_MOED = (string_from_decimal(Lnk_Nxg_Data.ORA631 , InterVar0_1) + InterVar0_3);
+		} else {
+			Lnk_Ds_Data.ORIG_TOT_ADV_UNCT_LMT_MOED = string_from_decimal(Lnk_Nxg_Data.ORA631 , InterVar0_1);
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_Data.ORIG_TOT_UNADV_UNCT_LMT_MOED = InterVar0_0;
+	if (null(Lnk_Nxg_Data.ORA633)) {
+		Lnk_Ds_Data.CURR_TOT_ADV_UNCT_LMT_MOED = InterVar0_0;
+	} else {
+		if ((index_of_substring_basic(string_from_decimal(Lnk_Nxg_Data.ORA633 , InterVar0_1) , InterVar0_2 , 1) == 0)) {
+			Lnk_Ds_Data.CURR_TOT_ADV_UNCT_LMT_MOED = (string_from_decimal(Lnk_Nxg_Data.ORA633 , InterVar0_1) + InterVar0_3);
+		} else {
+			Lnk_Ds_Data.CURR_TOT_ADV_UNCT_LMT_MOED = string_from_decimal(Lnk_Nxg_Data.ORA633 , InterVar0_1);
+		}
+		//;
+	}
+	//;
+	Lnk_Ds_Data.CURR_TOT_UNADV_UNCT_LMT_MOED = InterVar0_0;
+	Lnk_Ds_Data.GUARANTEE_AMOUNT = InterVar0_0;
+	Lnk_Ds_Data.GUARANTEE_RELATIONSHIP_CODE = InterVar0_0;
+	Lnk_Ds_Data.NATURAL_CURRENCY = InterVar0_0;
+	writerecord 0;
+	RowRejected0 = 0;
+	// evaluate columns (no constraints) for link: Lnk_Cpy_Cfl
+	Lnk_Cpy_Cfl.REPORTING_PERIOD = u_substring_1(V_MISDATE , 1 , 6);
+	Lnk_Cpy_Cfl.LINKAGE_TYPE = InterVar0_7;
+	Lnk_Cpy_Cfl.LINKED_UNIQUE_ID = Lnk_Nxg_Data.CRD_ACCT_NBR;
+	Lnk_Cpy_Cfl.COLL_PERCENTAGE_ALLOCATION = InterVar0_0;
+	writerecord 1;
+	RowRejected0 = 0;
+}
+
+finish {
+}
