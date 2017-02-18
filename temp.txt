@@ -1,4 +1,22 @@
-antlr4ide.core,0.3.6.201611052310,file:/C:/Users/Hari.Dosapati/.p2/pool/plugins/antlr4ide.core_0.3.6.201611052310.jar,4,false
-antlr4ide.ui,0.3.6.201611052310,file:/C:/Users/Hari.Dosapati/.p2/pool/plugins/antlr4ide.ui_0.3.6.201611052310.jar,4,false
-javax.xml,1.3.4.v201005080400,file:/C:/Users/Hari.Dosapati/.p2/pool/plugins/javax.xml_1.3.4.v201005080400.jar,4,false
-org.antlr.runtime,3.2.0.v201101311130,file:/C:/Users/Hari.Dosapati/.p2/pool/plugins/org.antlr.runtime_3.2.0.v201101311130.jar,4,false
+derivation [REPORTING_PERIOD] --> Tfm_Standardize.REPORTING_PERIOD [1,6]
+derivation [ACCOUNT_NUMBER] --> Tfm_Standardize.ACCOUNT_NUMBER
+derivation [CHARGE_OFF_EVENT_DATE] --> If IsNull(Tfm_Standardize.CHRG_OFF_DT) then '' else UpCase(DateToString(Tfm_Standardize.CHRG_OFF_DT,'%dd%mmm%yyyy'))
+derivation [CHARGE_OFF_EVENT_TYPE] --> If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then '1' Else ''
+derivation [CHARGE_OFF_EVENT_PRINCIPAL] --> '0.0'
+derivation [CHARGE_OFF_EVENT_INTEREST] --> '0.0'
+derivation [CHARGE_OFF_EVENT_FEE] --> '0.0'
+derivation [CHARGE_OFF_EVENT_TXN_TYPE] --> If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then '2' Else ''
+derivation [CHARGE_OFF_EVENT_REASON_CODE] --> If IsNull(Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE) Then '' Else  Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE
+derivation [CHARGE_OFF_EVENT_INT_AND_FEE] --> '0.0'
+derivation [COUNTRY_CD] --> PLN_Parameter_Set.ISO_CNTRY_CD
+derivation [REPORTING_PERIOD] --> Tfm_Standardize.REPORTING_PERIOD [1,6]
+derivation [ACCOUNT_NUMBER] --> Tfm_Standardize.ACCOUNT_NUMBER
+derivation [CHARGE_OFF_EVENT_DATE] --> If IsNull(Tfm_Standardize.CHRG_OFF_DT) then '' else UpCase(DateToString(Tfm_Standardize.CHRG_OFF_DT,'%dd%mmm%yyyy'))
+derivation [CHARGE_OFF_EVENT_TYPE] --> If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then '1' Else ''
+derivation [CHARGE_OFF_EVENT_PRINCIPAL] --> '0.0'
+derivation [CHARGE_OFF_EVENT_INTEREST] --> '0.0'
+derivation [CHARGE_OFF_EVENT_FEE] --> '0.0'
+derivation [CHARGE_OFF_EVENT_TXN_TYPE] --> If IsNotNull(Tfm_Standardize.CHRG_OFF_DT) Then '2' Else ''
+derivation [CHARGE_OFF_EVENT_REASON_CODE] --> If IsNull(Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE) Then '' Else  Tfm_Standardize.CHARGE_OFF_EVENT_REASON_CODE
+derivation [CHARGE_OFF_EVENT_INT_AND_FEE] --> '0.0'
+derivation [COUNTRY_CD] --> PLN_Parameter_Set.ISO_CNTRY_CD
